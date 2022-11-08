@@ -90,6 +90,7 @@ def ejecutaropcion(opcion):
             print("Ocurrio un problema")
         
     elif opcion == 2:
+        
         #este viene de funciones
         hola = funciones.pedirDatosPropiedad()
         print("Lleuge hasta aca ")

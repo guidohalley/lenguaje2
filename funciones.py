@@ -36,6 +36,7 @@ def pedirDatosPropiedad():
   return propiedad
 
 def DatosEliminarPropiedad(self, propiedades):
+  
   print("entre aca en funciones")
   listarpropiedad() 
   codigoEliminar = input("Ingrese el codigo de la propiedad a eliminar")

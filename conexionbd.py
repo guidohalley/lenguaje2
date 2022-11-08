@@ -42,6 +42,7 @@ class Conexion:
     #insercion
     def registrarPropiedad(self, propiedad):
         if self.inmobiliaria.is_connected():
+            
             try:
                 mycursor=self.inmobiliaria.cursor()
                 sql = "insert into inmobiliaria.propiedad (direccionpropiedad, baños, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad, propietario_idpropietario) values ('{0}', {1}, {2}, {3}, {4}, {5}, {6}, {7});"
