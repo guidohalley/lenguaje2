@@ -6,7 +6,7 @@ from mysql.connector import Error
 
 # en la pc de escritorio no hay contraseña
 # en la laptop la contraseña es incade
-
+print('llegue aca')
 class conexion:    
     def __init__(self):      
         try:
