@@ -32,47 +32,16 @@ class conexion:
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))
         
-    def listarcliente(self):
+    def eliminarpropiedad(self, propiedad):
         
         if self.inmobiliaria.is_connected():
             try:
                 mycursor = self.inmobiliaria.cursor()
-                mycursor.execute("SELECT * FROM inmobiliaria.cliente;")
+                sql = "DELETE FROM inmobiliara.propiedad WHERE idpropietario = {0}"
+                mycursor.execute("SELECT * FROM inmobiliaria.propiedad;")
                 myresult = mycursor.fetchall()
+
                 for x in myresult:
                     print(x)                
             except Error as ex:
-                print("Error en conexion: {0}".format(ex))       
-        
-    def listarpropietario(self):
-        
-        if self.inmobiliaria.is_connected():
-            try:
-                mycursor = self.inmobiliaria.cursor()
-                mycursor.execute("SELECT * FROM inmobiliaria.propietario;")
-                myresult = mycursor.fetchall()
-                for x in myresult:
-                    print(x)                
-            except Error as ex:
-                print("Error en conexion: {0}".format(ex))       
-          
-                       
-    def listaralquiler(self):
-        
-        if self.inmobiliaria.is_connected():
-            try:
-                mycursor = self.inmobiliaria.cursor()
-                mycursor.execute("SELECT * FROM inmobiliaria.alquiler;")
-                myresult = mycursor.fetchall()
-                for x in myresult:
-                    print(x)                
-            except Error as ex:
-                print("Error en conexion: {0}".format(ex))              
-        
-    
-    
-
-    
-
-
-
+                print("Error en conexion: {0}".format(ex))
