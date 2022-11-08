@@ -62,8 +62,7 @@ class Conexion:
                 self.inmobiliaria.commit()
                 print("Propiedad Eliminada correctamente\n")             
             except Error as ex:
-                print("Error en conexion: {0}".format(ex))
-            
+                print("Error en conexion: {0}".format(ex))      
 
 
 

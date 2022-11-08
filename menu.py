@@ -19,7 +19,6 @@ print(" |  _  | | (_| | | | | | |  __/ | |_| |   | |_| | | |_| | | | | (_| | | (
 print(" |_| |_|  \__,_| |_| |_|  \___|  \__, |    \____|  \__,_| |_|  \__,_|  \___/ ")
 print("                                 |___/                                       ")
 
-
 def menuprincipal():
     continuar = True
     while(continuar):
@@ -111,12 +110,11 @@ def ejecutaropcion(opcion):
                     conexion.elminarPropiedad(codigoEliminar)
                 else:
                     print("No se encontro el codigo de propiedad")
+                    menuprincipal()
         except:
             print("No entro al if")
     elif opcion == 4:
         print("Visualizacion")
     else: 
         print ("Opcion no Valida")
-        
-        
-menuprincipal()
+        menuprincipal()        
