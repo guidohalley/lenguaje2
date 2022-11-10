@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding :-*-  UTF-8 -*-
 import os
-from conexionbd import Conexion
-import funciones
 
- 
+import funciones
+from conexionbd import Conexion
+
 print(" _                                                _            ___   ___    ") 
 print(" | |       ___   _ __     __ _   _   _    __ _    (_)   ___    |_ _| |_ _|  ")  
 print(" | |      / _ \ | '_ \   / _` | | | | |  / _` |   | |  / _ \    | |   | |   ")  
@@ -19,19 +19,22 @@ print(" |  _  | | (_| | | | | | |  __/ | |_| |   | |_| | | |_| | | | | (_| | | (
 print(" |_| |_|  \__,_| |_| |_|  \___|  \__, |    \____|  \__,_| |_|  \__,_|  \___/ ")
 print("                                 |___/                                       ")
 
+
 def menuprincipal():
     continuar = True
     while(continuar):
         
         opcionCorrecta=False
         
-        while(not opcionCorrecta):          
-            # print("""
-            #     ████████████████████████████████████████████████████████████████████████████████████
-            #     █▄─▀█▀─▄█▄─▄▄─█▄─▀█▄─▄█▄─██─▄███▄─▄▄─█▄─▄▄▀█▄─▄█▄─▀█▄─▄█─▄▄▄─█▄─▄█▄─▄▄─██▀▄─██▄─▄███
-            #     ██─█▄█─███─▄█▀██─█▄▀─███─██─█████─▄▄▄██─▄─▄██─███─█▄▀─██─███▀██─███─▄▄▄██─▀─███─██▀█
-            #     ▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▄▄▄▀▀▄▄▀▀▄▄▄▄▀▀▀▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀
-            #     """)
+        while(not opcionCorrecta):  
+            '''
+            print("""
+                ████████████████████████████████████████████████████████████████████████████████████
+                █▄─▀█▀─▄█▄─▄▄─█▄─▀█▄─▄█▄─██─▄███▄─▄▄─█▄─▄▄▀█▄─▄█▄─▀█▄─▄█─▄▄▄─█▄─▄█▄─▄▄─██▀▄─██▄─▄███
+                ██─█▄█─███─▄█▀██─█▄▀─███─██─█████─▄▄▄██─▄─▄██─███─█▄▀─██─███▀██─███─▄▄▄██─▀─███─██▀█
+                ▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▄▄▄▀▀▄▄▀▀▄▄▄▄▀▀▀▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀
+                """)
+            '''        
 
             print("---------Operaciones de Propiedad--------")
             print(" 1- Ver todas las propiedades")
@@ -59,18 +62,17 @@ def menuprincipal():
             
             
             print("--------0-Salir--------")
-            opcion = int(input("Seleccione una opcion : "))            
+            opcion = int(input("Seleccione una opcion : "))
 
             if opcion < 0 or opcion > 16:
                 print("Opcion incorrecta, ingrese nuevamente")
-                os.cls()
+                
             elif opcion == 0:
                 continuar = False
                 print("Sistema Cerrado")
-
                 break
             else:
-                opcionCorrecta=True 
+                opcionCorrecta=True
                 ejecutaropcion(opcion)
                 
 def ejecutaropcion(opcion):
@@ -78,43 +80,60 @@ def ejecutaropcion(opcion):
     conexion = Conexion()
     
     if opcion == 1:
-        print("Visualizacion de Propiedades")
+        print('🚩')        
         try:
-            propiedades = conexion.listarPropiedades()
+            propiedades = conexion.listarPropiedades() #🔵 va a conexionesbd
             if len(propiedades) > 0:
-                funciones.listarPropiedades(propiedades)                            
+                funciones.listarprop(propiedades) #🟢 va a funciones
             else:
-                print("no se encontraron registros")    
-        except:
-            print("Ocurrio un problema")
-        
-    elif opcion == 2:
-        
-        #este viene de funciones
-        hola = funciones.pedirDatosPropiedad()
-        print("Lleuge hasta aca ")
-        try:
-            #trae todo propiedad y inserta en conexionbd.py
-            #NOSE POR QUE NO ANDA
-            conexion.registrarPropiedad(hola)
-        except:
+                print("no se encontraron registros")
+        except:            
             print("Ocurrio un problema")
             
-    elif opcion == 3:
+            
+            
+        
+    elif opcion == 2:  
+              
+        propiedad = conexion.elminarPropiedad()
+        #este viene de funciones
+        propiedades = funciones.pedirDatosPropiedad()        
+        try:            
+            print('🚩')
+            conexion.registrarPropiedad(propiedades)
+        except:
+            print("Ocurrio un problema")       
+            
+            
+            
+            
+            
+            
+            
+    elif opcion == 3:        
         try:
-            propiedades = conexion.listarPropiedades()
-            if len(propiedades) > 0:
-                codigoEliminar = funciones.DatosEliminarPropiedad(propiedades)
-                if not(codigoEliminar == ""):  
-                    print("***LLEGUE ACA***")
+            propis = conexion.listarPropiedades()
+            
+            if len(propis) > 0:
+                codigoEliminar = funciones.DatosEliminarPropiedad(propis)
+                
+                if (codigoEliminar == " "):
+                      
+                    print("❓")
                     conexion.elminarPropiedad(codigoEliminar)
                 else:
                     print("No se encontro el codigo de propiedad")
-                    menuprincipal()
+                    
         except:
-            print("No entro al if")
+            print("👽 No entro al if")
+            
+            
+            
+            
+            
     elif opcion == 4:
         print("Visualizacion")
     else: 
         print ("Opcion no Valida")
-        menuprincipal()        
+               
+menuprincipal() 
