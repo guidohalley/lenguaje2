@@ -80,7 +80,7 @@ class Conexion:
             try:
                 
                 mycursor=self.inmobiliaria.cursor()
-                sql = "delete from propiedad where propietario_idpropietario = '{0}';"
+                sql = "DELETE FROM inmobiliaria.propiedad WHERE ('propietario_idpropietario' = '{0}');"
                 mycursor.execute(sql.format(codigoEliminar))
                 self.inmobiliaria.commit()
                 print("Propiedad Eliminada correctamente\n")    

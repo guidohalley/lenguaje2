@@ -119,8 +119,8 @@ def ejecutaropcion(opcion):
                 
                 if (codigoEliminar == " "):
                       
-                    print("❓")
                     conexion.elminarPropiedad(codigoEliminar)
+                    print("❓")
                 else:
                     print("No se encontro el codigo de propiedad")
                     
