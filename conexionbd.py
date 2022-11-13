@@ -34,13 +34,12 @@ class Conexion:
                     mycursor = self.inmobiliaria.cursor()
                     mycursor.execute("SELECT * FROM inmobiliaria.propietario;")
                     lista = mycursor.fetchall()                
-                    for x in lista:
-                        print(x) 
+                    # for x in lista:
+                    #     print(x) 
                 except Error as ex:
                     print("Error en conexion: {0}".format(ex))                
             return lista
-        
-    
+
     def registrarPropietario(self, propietario):       
         
         if self.inmobiliaria.is_connected():
@@ -56,8 +55,7 @@ class Conexion:
                 
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))
-
-            
+       
 #                                                                           PROPIEDADES 
     # visualizacion       
     def listarPropiedades(self):
@@ -73,7 +71,6 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))                
         return lista
 
-    
     def registrarPropiedad(self, propiedad):
         
         
@@ -91,8 +88,6 @@ class Conexion:
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))
                 
-                
-
     def elminarPropiedad(self, codigoEliminar):
         #trae codigo eliminar del menu y ...
         
@@ -118,7 +113,6 @@ class Conexion:
                 
                 print("Error en conexion: {0}".format(ex))   
   
-  
 #                                                                          ALQUILERES
 
     def listarAlquileres(self):
@@ -136,7 +130,6 @@ class Conexion:
 
     
     def registrarAlquileres(self, alquiler):
-        
         if self.inmobiliaria.is_connected():
             print('🚩conexion')
             try:
@@ -146,8 +139,37 @@ class Conexion:
                 
                 mycursor.execute(sql.format(alquiler[0], alquiler[1], alquiler[2], alquiler[3], alquiler[4]))                
                 self.inmobiliaria.commit()         
-              
-               
+            
+            
                 print("Propiedad Ingresado correctamente\n")
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))
+#                                                                          CLIENTES
+
+    def listarClientes(self):
+
+        if self.inmobiliaria.is_connected():# vemos si esta conectado
+            try:
+                mycursor = self.inmobiliaria.cursor()
+                mycursor.execute("SELECT * FROM inmobiliaria.cliente;")
+                lista = mycursor.fetchall()                
+                # for x in lista:
+                #     print(x) 
+            except Error as ex:
+                print("Error en conexion: {0}".format(ex))                
+        return lista
+
+    
+    def registrarClientes(self, cliente):
+        if self.inmobiliaria.is_connected():
+            try:
+              mycursor=self.inmobiliaria.cursor()
+              print("🚩cursor")
+              sql = "insert into cliente (nombre, apellido, direccion, telefono, nombregarante,alquiler_idalquiler) values ('{0}','{1}','{2}',{3},'{4}',{5})"
+              print("🚩sql")
+              mycursor.execute(sql.format(cliente[0],cliente[1],cliente[2],cliente[3],cliente[4],cliente[5]))
+              print("🚩execute")
+              self.inmobiliaria.commit()
+              print("🚩commit")
+            except:
+              print('Ocurrio un problema en Conexion')

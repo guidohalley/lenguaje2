@@ -49,7 +49,7 @@ def menuprincipal():
             # print("  12- Actualizar Propietario")
             
             print("---------Operaciones de Cliente--------")
-            print(" 31- Ver")
+            print(" 13- Ver")
             print(" 14- Insertar ")            
             # print("  11- Eliminar Propietario")
             # print("  12- Actualizar Propietario")
@@ -120,13 +120,13 @@ def ejecutaropcion(opcion):
     elif opcion == 5:#Listar Propietarios
         #print('🚩')        
         try:
-            propietarios = conexion.listarPropietarios() #🔵 va a conexionesbd
-            if len(propietarios) > 0:
-                funciones.listarprop(propietarios) #🟢 va a funciones
+            propietario = conexion.listarPropietarios() #🔵 va a conexionesbd
+            if len(propietario) > 0:
+                funciones.listarpropietario(propietario) #🟢 va a funciones
             else:
                 print("no se encontraron registros")
         except:            
-            print("Ocurrio un problema")                             
+            print("🤔Ocurrio un problema")                             
     elif opcion == 6:  #Registrar Propietario      
 
         propietario = funciones.pedirDatosPropietario()#va a funciones    
@@ -180,23 +180,30 @@ def ejecutaropcion(opcion):
           print('An exception occurred')
         
 #                     CLIENTE
-    elif opcion == 11:  #Mostrar Clientes
+    elif opcion == 13:  #Mostrar Clientes
         try:
-          print(x)
-        except:
-          print('An exception occurred')
-    elif opcion == 12:  #Registrar Clientes
-        try:
-          print(x)
+            clientes = conexion.listarClientes()
+            if len(clientes) > 0:
+                funciones.listarclientes(clientes)              
+            else:
+              print("Ocurrio un problema ...")
         except:
           print('An exception occurred')
           
-    elif opcion == 13:  #Eliminar Clientes
+    elif opcion == 14:  #Registrar Clientes
+        clientes = funciones.pedirDatosClientes()
+        try:
+            conexion.registrarClientes(clientes)
+            print("🚩menu")
+        except:
+          print('Ocurrio un Problema...')
+          
+    elif opcion == 15:  #Eliminar Clientes14
         try:
           print("No funciona >:(")
         except:
           print('An exception occurred')
-    elif opcion == 14:  #Actualizar Clientes
+    elif opcion == 16:  #Actualizar Clientes
         try:
           print(x)
         except:
@@ -204,4 +211,4 @@ def ejecutaropcion(opcion):
     else: 
         print ("Opcion no Valida")
                
-menuprincipal() 
+menuprincipal()

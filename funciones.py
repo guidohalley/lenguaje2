@@ -123,5 +123,34 @@ def pedirDatosAlquileres():
 
 
  
+# CLIENTE
+
+def listarclientes(clientes):
+  
+  for cli in clientes:
+    datos = "|[{0}],[{2}],[{3}],[{4}],[{5}]]|"
+    print(datos.format(cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]))
 
 
+def pedirDatosClientes():
+  
+  '''
+  Table: cliente
+  Columns:
+  idcliente int AI PK 
+  nombre varchar(45) 
+  apellido varchar(45) 
+  direccion varchar(45) 
+  telefono int 
+  nombregarante varchar(45) 
+  alquiler_idalquiler int
+  
+  '''
+  nombreCli =  input("Nombre del Cliente? ")
+  apellidoCli  =  input("Apellido del Cliente ? ")
+  direccionCli =  input("Direccion del Cliente? ")
+  telefonoCli  =  float(input("telefono del cliente? "))  
+  garante = input("nombre del garante> ")
+  Calquiler_idalquiler = int(input("ingrese el id del alquiler> ")) 
+  cliente =  (nombreCli, apellidoCli, direccionCli, telefonoCli, garante,Calquiler_idalquiler)
+  return cliente
