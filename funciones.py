@@ -1,4 +1,6 @@
+import os
 import conexionbd
+
 from datetime import date, datetime
 
 
@@ -58,36 +60,36 @@ def pedirDatosPropiedad():
   return propiedad
 
 
-
-
-def DatosEliminarPropiedad(propiedad):     
-    listarprop(propiedad)  
+def datosEliminarPropiedad(propiedad):
+  
+    
+    print("8🏁ingresa funciones")
+    listarpropiedades(propiedad)  
     existeCodigo = False
-    codigoEliminar = input("Ingrese el codigo del propietario que quiere  a eliminar> ")
-
+    codigoEliminar = int(input("Ingrese el codigo del propietario que quiere  a eliminar> "))
     #buscamos si esta codigo eliminar en el listado de propiedades y si lo encuentra lo llevamos al menu
-
     for prop in propiedad:
-          
-      if prop[0] == codigoEliminar:              
+      
+      print("9🏁ingresa al for")
+      
+      if prop[0] == codigoEliminar:
+        print("10🏁ingresa al if")
         existeCodigo = True
+        print("11🏁encuentra codigo")
         break    
       
     if not existeCodigo:
       codigoEliminar = " "
       
-    return codigoEliminar
+    return codigoEliminar  #paso esto al menu principal.
     
-
 # ALQUILERES
-
 def listaralquileres(alquileres):
   
   for alqui in alquileres:
     datos  =  "|[{0}]--[{1}]--[{2}]--[{3}]--[{4}]--[{5}]|"
     #idpropietario, nombre, apellido, direccion, telefono, email
     print(datos.format(alqui[0], alqui[1], alqui[2], alqui[3], alqui[4], alqui[5]))
-
 
 def pedirDatosAlquileres():
   
@@ -122,7 +124,6 @@ def pedirDatosAlquileres():
   return alquiler
 
 
- 
 # CLIENTE
 
 def listarclientes(clientes):
@@ -130,7 +131,6 @@ def listarclientes(clientes):
   for cli in clientes:
     datos = "|[{0}],[{2}],[{3}],[{4}],[{5}]]|"
     print(datos.format(cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]))
-
 
 def pedirDatosClientes():
   

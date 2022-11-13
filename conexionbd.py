@@ -92,25 +92,30 @@ class Conexion:
         #trae codigo eliminar del menu y ...
         
         if self.inmobiliaria.is_connected():
-            print("Hay conexion")   
+            print("13🤔Hay conexion")   
                 
-            try:                
+            try:
+                
+                                
                 mycursor=self.inmobiliaria.cursor()
-                print("🤔tenemos cursor")
+                print("14🤔tenemos cursor")
                 #pongo la consulta dentro deuna var para poder darle format despues. 
                 sql = "DELETE FROM propiedad WHERE idpropiedad = '{0}'; "
-                print("🤔guardamos la consulta en sql")
-                #la mando por aca  y en al consola supuestamente ya elimina. 
-                mycursor.execute(sql.format(codigoEliminar))#execute(sql.format(codigoEliminar))
-                print("🤔ejecutamos la consulta")
-                self.inmobiliaria.commit()
-                print("🤔mando el commit supuestamente")
-                #una vez que pasa aca voy a la BD y todavia no hace la eliminacion . y controle muchisimas veces
-                print("Propiedad Eliminada correctamente\n")
-   
-                         
-            except Error as ex:
+                print("15🤔guardamos la consulta en sql", sql)
+                print(sql.format(codigoEliminar))
                 
+                #la mando por aca  y en al consola supuestamente ya elimina.
+                mycursor.execute(sql.format(codigoEliminar)) 
+                # Error en conexion: 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`inmobiliaria`.`alquiler`, CONSTRAINT `fk_alquiler_propiedad1` FOREIGN KEY (`propiedad_idpropiedad`) REFERENCES `propiedad` (`idpropiedad`))
+                sql1 = mycursor.execute(sql.format(codigoEliminar))#execute(sql.format(codigoEliminar))
+                
+                print("16🤔ejecutamos la consulta> ",sql1 )
+                self.inmobiliaria.commit()
+                print("17🤔mando el commit supuestamente")
+                #una vez que pasa aca voy a la BD y todavia no hace la eliminacion . y controle muchisimas veces
+                print("Propiedad Eliminada correctamente\n")   
+                         
+            except Error as ex:                
                 print("Error en conexion: {0}".format(ex))   
   
 #                                                                          ALQUILERES
@@ -128,7 +133,6 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))                
         return lista
 
-    
     def registrarAlquileres(self, alquiler):
         if self.inmobiliaria.is_connected():
             print('🚩conexion')
@@ -145,7 +149,6 @@ class Conexion:
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))
 #                                                                          CLIENTES
-
     def listarClientes(self):
 
         if self.inmobiliaria.is_connected():# vemos si esta conectado
@@ -159,7 +162,6 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))                
         return lista
 
-    
     def registrarClientes(self, cliente):
         if self.inmobiliaria.is_connected():
             try:
