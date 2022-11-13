@@ -33,26 +33,26 @@ def menuprincipal():
             print("---------Operaciones de Propiedad--------")
             print(" 1- Ver ")
             print(" 2- Insertar ")
-            print(" 3- Eliminar Propiedad")
+            print(" 3- Eliminar ")
             #print(" 4- Actualizar una Propiedad") 
             
             print("---------Operaciones de Propietario--------")
             print(" 5- Ver ")
             print(" 6- Insertar ")
-            # print("  7- Eliminar Propietario")
+            print("  7- Eliminar ")
             # print("  8- Actualizar Propietario")
             
             print("---------Operaciones de Alquiler--------")
             print(" 9- Ver")
             print(" 10- Insertar ")            
-            # print("  11- Eliminar Propietario")
+            print("  11- Eliminar ")
             # print("  12- Actualizar Propietario")
             
             print("---------Operaciones de Cliente--------")
             print(" 13- Ver")
             print(" 14- Insertar ")            
-            # print("  11- Eliminar Propietario")
-            # print("  12- Actualizar Propietario")
+            print("  15- Eliminar ")
+            # print("  16- Actualizar Propietario")
                        
             print("--------0-Salir--------")
             opcion = int(input("Seleccione una opcion : "))
@@ -73,49 +73,50 @@ def ejecutaropcion(opcion):
     conexion = Conexion()
 #                     PROPIEDADES     
     if opcion ==   1:       #Listar
-        #print('🚩')        
+              
         try:
-            propiedades = conexion.listarPropiedades() #🔵 va a conexionesbd
+            propiedades = conexion.listarPropiedades() 
             if len(propiedades) > 0:
-                funciones.listarpropiedades(propiedades) #🟢 va a funciones
+                funciones.listarpropiedades(propiedades) 
             else:
                 print("no se encontraron registros")
         except:            
-            print("Ocurrio un problema")     
+            print("Ocurrio un problema")
+                 
     elif opcion == 2:       #Registrar Propiedades
               
-        #propiedad = conexion.elminarPropiedad()
-        #este viene de funciones
+        #viene de funciones
         propiedades = funciones.pedirDatosPropiedad()        
         try:            
             print('🚩')
             conexion.registrarPropiedad(propiedades)
         except:
-            print("Ocurrio un problema")              
+            print("Ocurrio un problema")
+            
+                          
     elif opcion == 3:       #Eliminar Propieades     
-        try:
+        
+        try:            
             
-            print("1🚩try")
-            propiedad = conexion.listarPropiedades()
+            propiedad = conexion.listarPropiedades()                          
             
-            print("2🚩listar")             
-            #listamos las propiedades.
-            if len(propiedad) > 0: #ingresa si es que propiedad trae algo.
+            if len(propiedad) > 0:              
                 
-                print("3🚩 len") 
-                codigoEliminar = funciones.datosEliminarPropiedad(propiedad) # es para pedir los datos que tenemos que eliminar.
+                codigoEliminar = funciones.datosEliminarPropiedad(propiedad) 
                 
                 if not(codigoEliminar == ' '):
-                    print("4🚩if not")
-                    
                     conexion.elminarPropiedad(codigoEliminar)
-                    print("5🚩 Elimino o tiro error")
                 else:
-                    print ("6🚩codigo de propiedad inexistente")
+                    print ("Codigo de propiedad inexistente")
         except:
-            print("7🚩 Ocurrio un problema")                 
+            print(" Ocurrio un problema")
+            
+                             
     elif opcion == 4:       #Actualizar Propieades
-        
+        try:
+          print(x)
+        except:
+          print('An exception occurred')
         
         
         
@@ -126,31 +127,49 @@ def ejecutaropcion(opcion):
 
 #                     PROPIETARIO            
     elif opcion == 5:   #Listar Propietarios
-        #print('🚩')        
+       
         try:
-            propietario = conexion.listarPropietarios() #🔵 va a conexionesbd
+            propietario = conexion.listarPropietarios() 
             if len(propietario) > 0:
-                funciones.listarpropietario(propietario) #🟢 va a funciones
+                funciones.listarpropietario(propietario) 
             else:
                 print("no se encontraron registros")
         except:            
-            print("🤔Ocurrio un problema")                             
-    elif opcion == 6:   #Registrar Propietario      
+            print("🤔Ocurrio un problema")   
+            
+            
+                                      
+    elif opcion == 6:    #Registrar Propietarios    
 
-        propietario = funciones.pedirDatosPropietario()#va a funciones    
+        propietario = funciones.pedirDatosPropietario() 
         try:
             print("🚩menu") 
-            conexion.registrarPropietario(propietario)# aca va a la conexion
+            conexion.registrarPropietario(propietario)
         except:
-            print("Ocurrio un problema")      
-    elif opcion == 7:   #Eliminar Propietario      
+            print("Ocurrio un problema") 
+            
+            
+                 
+    elif opcion == 7:   #Eliminar Propietario
+        
+        try:            
 
-        propietario = funciones.pedirDatosPropietario()#va a funciones    
-        try:
-            print("🚩menu") 
-            conexion.registrarPropietario(propietario)# aca va a la conexion
+            propietario= conexion.listarPropietarios()
+
+            if len(propietario) > 0: 
+
+                cPropietarioEliminiar = funciones.datosEliminarPropietario(propietario) # es para pedir los datos que tenemos que eliminar.
+
+                if not(cPropietarioEliminiar == ' '):
+                    
+                    conexion.elminarPropietario(cPropietarioEliminiar)
+                    
+                else:
+                    print ("Codigo de propietario inexistente")
         except:
-            print("Ocurrio un problema")            
+            print("Ocurrio un problema")    
+            
+                    
     elif opcion == 8:   #Actualizar Propietario  
         try:
           print(x)
@@ -160,7 +179,7 @@ def ejecutaropcion(opcion):
 
 #                     ALQUILERES
     elif opcion == 9:   #Mostrar  Alquileres
-        #print('🚩')        
+      
         try:
             alquileres = conexion.listarAlquileres() #🔵 va a conexionesbd
             if len(alquileres) > 0:
@@ -168,19 +187,34 @@ def ejecutaropcion(opcion):
             else:
                 print("no se encontraron registros")
         except:            
-            print("Ocurrio un problema")   
-    elif opcion == 10:  #Registrar Alquileres
+            print("Ocurrio un problema")
+            
+               
+    elif opcion == 10:  #Registrar Alquileres11
+        
         alquileres = funciones.pedirDatosAlquileres()        
         try:            
             conexion.registrarAlquileres(alquileres)
             print('🚩menu')
         except:
             print("Ocurrio un problema")
+          
+            
     elif opcion == 11:  #Eliminar  Alquileres
         try:
-          print(x)
+          alquiler = conexion.listarAlquileres()
+          if len(alquiler) > 0:
+              
+            cAlquilerEliminar = funciones.datosEliminarAlquiler(alquiler)
+              
+            if not(cAlquilerEliminar == ' '):
+                  conexion.eliminarAlquileres(cAlquilerEliminar)
+            else:
+                print(" el codigo de Alquiler no fue encontrado...")
         except:
-          print('An exception occurred')
+          print('Ha ocurrido un problema')
+    
+    
     elif opcion == 12:  #Actualizar Alquileres
         try:
           print(x)
@@ -189,26 +223,49 @@ def ejecutaropcion(opcion):
         
 #                     CLIENTE
     elif opcion == 13:  #Mostrar Clientes
+        
         try:
             clientes = conexion.listarClientes()
             if len(clientes) > 0:
+                
                 funciones.listarclientes(clientes)              
             else:
+                
               print("Ocurrio un problema ...")
         except:
-          print('An exception occurred')          
+            
+          print('An exception occurred')
+          
+                    
     elif opcion == 14:  #Registrar Clientes
+        
         clientes = funciones.pedirDatosClientes()
         try:
+            
             conexion.registrarClientes(clientes)
             print("🚩menu")
         except:
-          print('Ocurrio un Problema...')      
-    elif opcion == 15:  #Eliminar Clientes14
+            
+          print('Ocurrio un Problema...')  
+              
+    elif opcion == 15:  #Eliminar Clientes
+        
         try:
-          print("No funciona >:(")
+            
+            cliente  = conexion.listarClientes()
+            if len(cliente) > 0:
+                
+                cClienteEliminar = funciones.datosEliminarCliente(cliente)
+                if not(cClienteEliminar == ' '): 
+                                       
+                    print("🚩")
+                    conexion.eliminarClientes(cClienteEliminar)
+                else:
+                    
+                    print("el Codigo de Cliente no fue encontrado.. \n")                    
         except:
-          print('An exception occurred')
+            
+          print('Ha ocurrido un problema')
     elif opcion == 16:  #Actualizar Clientes
         try:
           print(x)

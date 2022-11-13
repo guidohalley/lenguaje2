@@ -12,8 +12,10 @@ from mysql.connector import Error
 
 class Conexion:
     #conexion    
-    def __init__(self):      
+    def __init__(self):
+              
         try:
+            
             self.inmobiliaria = mysql.connector.connect(
                 
                 user = 'root',
@@ -24,12 +26,16 @@ class Conexion:
                 
             )        
         except Error as ex:
+            
             print("Error en conexion: {0}".format(ex))
+            
+            
 #                                                                           PROPIETARIO
             
     def listarPropietarios(self):
-
-            if self.inmobiliaria.is_connected():# vemos si esta conectado
+        
+            if self.inmobiliaria.is_connected():
+                
                 try:
                     mycursor = self.inmobiliaria.cursor()
                     mycursor.execute("SELECT * FROM inmobiliaria.propietario;")
@@ -37,91 +43,95 @@ class Conexion:
                     # for x in lista:
                     #     print(x) 
                 except Error as ex:
-                    print("Error en conexion: {0}".format(ex))                
+                    
+                    print("Error en conexion: {0}".format(ex)) 
+                                   
             return lista
 
     def registrarPropietario(self, propietario):       
         
         if self.inmobiliaria.is_connected():
+            
             try:
-                mycursor=self.inmobiliaria.cursor()
-                print("🚩conexion")
+                
+                mycursor=self.inmobiliaria.cursor()               
                 #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
                 sql = "insert into propietario (nombre, apellido, direccion, telefono, email) values ('{0}','{1}', '{2}', {3}, '{4}');"
                 mycursor.execute(sql.format(propietario[0],propietario[1], propietario[2], propietario[3], propietario[4]))
-                print("🚩execute")
                 self.inmobiliaria.commit()
-                print('🚩 Propietario Registrado\n')             
-                
             except Error as ex:
+                
                 print("Error en conexion: {0}".format(ex))
-       
+                
+                
+    def elminarPropietario(self, cPropietarioEliminiar):
+           
+        if self.inmobiliaria.is_connected():
+            try:        
+                                
+                mycursor=self.inmobiliaria.cursor()
+                sql = "DELETE FROM propietario WHERE idpropietario = '{0}'; "
+                mycursor.execute(sql.format(cPropietarioEliminiar)) 
+                self.inmobiliaria.commit()               
+                
+            except Error as ex: 
+                               
+                print("Error en conexion: {0}".format(ex)) 
 #                                                                           PROPIEDADES 
-    # visualizacion       
+       
     def listarPropiedades(self):
 
-        if self.inmobiliaria.is_connected():# vemos si esta conectado
+        if self.inmobiliaria.is_connected():
             try:
+                
                 mycursor = self.inmobiliaria.cursor()
                 mycursor.execute("SELECT * FROM inmobiliaria.propiedad;")
-                lista = mycursor.fetchall()                
+                lista = mycursor.fetchall() 
                 # for x in lista:
                 #     print(x) 
             except Error as ex:
+                
                 print("Error en conexion: {0}".format(ex))                
         return lista
 
-    def registrarPropiedad(self, propiedad):
-        
+    def registrarPropiedad(self, propiedad):        
         
         if self.inmobiliaria.is_connected():
-            
             try:
-                mycursor=self.inmobiliaria.cursor()
                 
+                mycursor=self.inmobiliaria.cursor()
                 sql = "insert into propiedad (direccionpropiedad, baños, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad, propietario_idpropietario) values ('{0}', '{1}', '{2}', '{3}', '{4}', {5}, {6}, {7},{8});"
                 mycursor.execute(sql.format(propiedad[0], propiedad[1], propiedad[2], propiedad[3], propiedad[4], propiedad[5], propiedad[6], propiedad[7],propiedad[8]))
                 self.inmobiliaria.commit()
-                print('🚩 Propiedad Registrada')
-               
+                print('🚩 Propiedad Registrada')               
                 print("Propiedad Ingresado correctamente\n")
+                                
             except Error as ex:
+                
                 print("Error en conexion: {0}".format(ex))
                 
+                
     def elminarPropiedad(self, codigoEliminar):
-        #trae codigo eliminar del menu y ...
+
         
-        if self.inmobiliaria.is_connected():
-            print("13🤔Hay conexion")   
+        if self.inmobiliaria.is_connected():         
                 
-            try:
-                
+            try:               
                                 
                 mycursor=self.inmobiliaria.cursor()
-                print("14🤔tenemos cursor")
-                #pongo la consulta dentro deuna var para poder darle format despues. 
-                sql = "DELETE FROM propiedad WHERE idpropiedad = '{0}'; "
-                print("15🤔guardamos la consulta en sql", sql)
-                print(sql.format(codigoEliminar))
-                
-                #la mando por aca  y en al consola supuestamente ya elimina.
-                mycursor.execute(sql.format(codigoEliminar)) 
-                # Error en conexion: 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`inmobiliaria`.`alquiler`, CONSTRAINT `fk_alquiler_propiedad1` FOREIGN KEY (`propiedad_idpropiedad`) REFERENCES `propiedad` (`idpropiedad`))
-                sql1 = mycursor.execute(sql.format(codigoEliminar))#execute(sql.format(codigoEliminar))
-                
-                print("16🤔ejecutamos la consulta> ",sql1 )
+                sql = "DELETE FROM propiedad WHERE idpropiedad = '{0}'; "              
+                mycursor.execute(sql.format(codigoEliminar))              
                 self.inmobiliaria.commit()
-                print("17🤔mando el commit supuestamente")
-                #una vez que pasa aca voy a la BD y todavia no hace la eliminacion . y controle muchisimas veces
-                print("Propiedad Eliminada correctamente\n")   
-                         
-            except Error as ex:                
+                # Error en conexion: 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`inmobiliaria`.`alquiler`, CONSTRAINT `fk_alquiler_propiedad1` FOREIGN KEY (`propiedad_idpropiedad`) REFERENCES `propiedad` (`idpropiedad`))
+ 
+            except Error as ex:
+                                
                 print("Error en conexion: {0}".format(ex))   
   
 #                                                                          ALQUILERES
 
     def listarAlquileres(self):
-
+        
         if self.inmobiliaria.is_connected():# vemos si esta conectado
             try:
                 mycursor = self.inmobiliaria.cursor()
@@ -130,41 +140,63 @@ class Conexion:
                 # for x in lista:
                 #     print(x) 
             except Error as ex:
-                print("Error en conexion: {0}".format(ex))                
+                
+                print("Error en conexion: {0}".format(ex))
+                                
         return lista
 
     def registrarAlquileres(self, alquiler):
+        
         if self.inmobiliaria.is_connected():
-            print('🚩conexion')
+
             try:
+                
                 mycursor=self.inmobiliaria.cursor()
                 print('🚩cursor')
                 sql = "insert into alquiler (fechaconini, fechaconfin, empleadoinmo, montoalquiler, propiedad_idpropiedad) values ('{0}', '{1}', '{2}', {3}, {4});"
-                
                 mycursor.execute(sql.format(alquiler[0], alquiler[1], alquiler[2], alquiler[3], alquiler[4]))                
-                self.inmobiliaria.commit()         
-            
-            
+                self.inmobiliaria.commit() 
                 print("Propiedad Ingresado correctamente\n")
+                
             except Error as ex:
+                
                 print("Error en conexion: {0}".format(ex))
+    
+    def eliminarAlquileres(self,cAlquilerEliminar):
+        
+        if self.inmobiliaria.is_connected():            
+            try:       
+                        
+                mycursor=self.inmobiliaria.cursor()
+                sql="DELETE FROM alquiler WHERE idalquiler = {0}"
+                mycursor.execute(sql.format(cAlquilerEliminar))
+                self.inmobiliaria.commit()            
+                
+            except Error as ex:     
+                           
+                print("Error en conexion: {0}".format(ex)) 
+            
+                
 #                                                                          CLIENTES
     def listarClientes(self):
-
         if self.inmobiliaria.is_connected():# vemos si esta conectado
             try:
+                
                 mycursor = self.inmobiliaria.cursor()
                 mycursor.execute("SELECT * FROM inmobiliaria.cliente;")
                 lista = mycursor.fetchall()                
                 # for x in lista:
                 #     print(x) 
+                
             except Error as ex:
                 print("Error en conexion: {0}".format(ex))                
         return lista
 
     def registrarClientes(self, cliente):
+        
         if self.inmobiliaria.is_connected():
             try:
+                
               mycursor=self.inmobiliaria.cursor()
               print("🚩cursor")
               sql = "insert into cliente (nombre, apellido, direccion, telefono, nombregarante,alquiler_idalquiler) values ('{0}','{1}','{2}',{3},'{4}',{5})"
@@ -173,5 +205,25 @@ class Conexion:
               print("🚩execute")
               self.inmobiliaria.commit()
               print("🚩commit")
-            except:
-              print('Ocurrio un problema en Conexion')
+              
+            except Error as ex:
+                
+                print("Error en conexion: {0}".format(ex))
+              
+              
+    def eliminarClientes(self, cClienteEliminar):
+        
+        if self.inmobiliaria.is_connected():
+
+            try:
+                       
+                mycursor=self.inmobiliaria.cursor()                
+                sql="DELETE FROM cliente WHERE idcliente = {0}"
+                mycursor.execute(sql.format(cClienteEliminar))
+                self.inmobiliaria.commit()              
+                
+            except Error as ex:  
+                              
+                print("Error en conexion: {0}".format(ex)) 
+          
+     
