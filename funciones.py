@@ -94,8 +94,8 @@ def pedirDatosPropiedad():
   mt2 = int(input("ingrese los mt2: "))
   dormitorios = int(input("ingrese la cantidad de dormitorios: "))
   valorpropiedad  =  float(input("ingrese el valor de la propiedad: "))
-  propietario_idpropietario = int(input("Ingrese un numero"))
-   
+  #propietario_idpropietario = int(input("Ingrese id de propietario"))
+  apellidopropeitario = ("Ingrese el apellido del propietario") 
   propiedad  =  (direccionpropiedad, banios, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad,propietario_idpropietario)
   
   return propiedad

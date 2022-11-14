@@ -143,7 +143,7 @@ def ejecutaropcion(opcion):
 
         propietario = funciones.pedirDatosPropietario() 
         try:
-            print("🚩menu") 
+            
             conexion.registrarPropietario(propietario)
         except:
             print("Ocurrio un problema") 
@@ -181,9 +181,9 @@ def ejecutaropcion(opcion):
     elif opcion == 9:   #Mostrar  Alquileres
       
         try:
-            alquileres = conexion.listarAlquileres() #🔵 va a conexionesbd
+            alquileres = conexion.listarAlquileres() 
             if len(alquileres) > 0:
-                funciones.listaralquileres(alquileres) #🟢 va a funciones
+                funciones.listaralquileres(alquileres) 
             else:
                 print("no se encontraron registros")
         except:            
@@ -243,7 +243,7 @@ def ejecutaropcion(opcion):
         try:
             
             conexion.registrarClientes(clientes)
-            print("🚩menu")
+            
         except:
             
           print('Ocurrio un Problema...')  
@@ -258,7 +258,7 @@ def ejecutaropcion(opcion):
                 cClienteEliminar = funciones.datosEliminarCliente(cliente)
                 if not(cClienteEliminar == ' '): 
                                        
-                    print("🚩")
+                    
                     conexion.eliminarClientes(cClienteEliminar)
                 else:
                     
@@ -269,6 +269,15 @@ def ejecutaropcion(opcion):
     elif opcion == 16:  #Actualizar Clientes
         try:
           print(x)
+        except:
+          print('An exception occurred')
+          
+          
+          
+    elif opcion == 17:  #Actualizar Clientes
+        try:
+          apellidoProp = funcion.buscarProp()
+          if len(apellidoProp)
         except:
           print('An exception occurred')
     else: 

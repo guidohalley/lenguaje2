@@ -179,6 +179,7 @@ class Conexion:
                 
 #                                                                          CLIENTES
     def listarClientes(self):
+        
         if self.inmobiliaria.is_connected():# vemos si esta conectado
             try:
                 
@@ -198,13 +199,9 @@ class Conexion:
             try:
                 
               mycursor=self.inmobiliaria.cursor()
-              print("🚩cursor")
               sql = "insert into cliente (nombre, apellido, direccion, telefono, nombregarante,alquiler_idalquiler) values ('{0}','{1}','{2}',{3},'{4}',{5})"
-              print("🚩sql")
-              mycursor.execute(sql.format(cliente[0],cliente[1],cliente[2],cliente[3],cliente[4],cliente[5]))
-              print("🚩execute")
-              self.inmobiliaria.commit()
-              print("🚩commit")
+              mycursor.execute(sql.format(cliente[0],cliente[1],cliente[2],cliente[3],cliente[4],cliente[5]))              
+              self.inmobiliaria.commit()           
               
             except Error as ex:
                 
