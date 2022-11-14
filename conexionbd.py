@@ -78,23 +78,28 @@ class Conexion:
                                
                 print("Error en conexion: {0}".format(ex))
                 
-    def actualizarPropietario(self, cAPropietario):
-        
-         if self.inmobiliaria.is_connected():
+    def actualizarPropietario(self, cAPropietario):        
+        print("Entrando conexion >>>>>>>>⬆️🏁<<<<<<<")
+        if self.inmobiliaria.is_connected():               
             
             try:
-                
+                print(">>>>>>>>🚩🏁<<<<<<<")
                 mycursor=self.inmobiliaria.cursor()               
                 #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
-                sql = "UPDATE propietario set nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = {3}, email = '{4}';"
-                mycursor.execute(sql.format(cAPropietario[0],cAPropietario[1], cAPropietario[2], cAPropietario[3], cAPropietario[4]))
-                self.inmobiliaria.commit()
-                print("Propietario Actualizado")
+                sql = "UPDATE inmobiliaria.propietario SET nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = {3}, email = '{4}' WHERE (idpropietario = '{5}');"
+                print(">>>>>>>>🏁<<<<<<<")               
                 
+                mycursor.execute(sql.format(cAPropietario[0],cAPropietario[1], cAPropietario[2], cAPropietario[3], cAPropietario[4], cAPropietario[5]))
+                print("🏁execute")            
+                self.inmobiliaria.commit()
+                print("🏁Commit")
+                
+                
+                print("Propietario Actualizado")
             except Error as ex:
                 
                 print("Error en conexion: {0}".format(ex))
-#                                                                           PROPIEDADES 
+    #                                                                           PROPIEDADES 
        
     def listarPropiedades(self):
 
@@ -140,10 +145,13 @@ class Conexion:
                 mycursor.execute(sql.format(codigoEliminar))              
                 self.inmobiliaria.commit()
                 # Error en conexion: 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`inmobiliaria`.`alquiler`, CONSTRAINT `fk_alquiler_propiedad1` FOREIGN KEY (`propiedad_idpropiedad`) REFERENCES `propiedad` (`idpropiedad`))
- 
+                # Funciona, pero primiero hay que borrar alquiler. 
             except Error as ex:
                                 
-                print("Error en conexion: {0}".format(ex))   
+                print("Error en conexion: {0}".format(ex))
+                print("No se puede Eliminar una propiedad en Alquiler")
+                time.sleep(5)
+                os.system("cls")   
   
 #                                                                          ALQUILERES
 

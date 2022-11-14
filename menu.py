@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding :-*-  UTF-8 -*-
 import os
+import time
 
 import funciones
 from conexionbd import Conexion
@@ -31,30 +32,30 @@ def menuprincipal():
      
 
             print("---------Operaciones de Propiedad--------")
-            print(" 1- Ver ")
-            print(" 2- Insertar ")
-            print(" 3- Eliminar ")
+            print("1 - Ver ")
+            print("2 - Insertar ")
+            print("3 - Eliminar ")
             #print(" 4- Actualizar una Propiedad") 
             
             print("---------Operaciones de Propietario--------")
-            print(" 5- Ver ")
-            print(" 6- Insertar ")
-            print("  7- Eliminar ")
-            # print("  8- Actualizar Propietario")
+            print("5 - Ver ")
+            print("6 - Insertar ")
+            print("7 - Eliminar ")
+            print("8 - Actualizar Propietario")
             
             print("---------Operaciones de Alquiler--------")
-            print(" 9- Ver")
-            print(" 10- Insertar ")            
-            print("  11- Eliminar ")
+            print("9 - Ver")
+            print("10- Insertar ")            
+            print("11- Eliminar ")
             # print("  12- Actualizar Propietario")
             
             print("---------Operaciones de Cliente--------")
             print(" 13- Ver")
             print(" 14- Insertar ")            
-            print("  15- Eliminar ")
+            print(" 15- Eliminar ")
             # print("  16- Actualizar Propietario")
-                       
-            print("--------0-Salir--------")
+            print(" ________________________________________")        
+            print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
 
             if opcion < 0 or opcion > 16:
@@ -159,37 +160,41 @@ def ejecutaropcion(opcion):
             if len(propietario) > 0: 
 
                 cPropietarioEliminiar = funciones.datosEliminarPropietario(propietario) # es para pedir los datos que tenemos que eliminar.
-
                 if not(cPropietarioEliminiar == ' '):
                     
-                    conexion.elminarPropietario(cPropietarioEliminiar)
-                    
+                    conexion.elminarPropietario(cPropietarioEliminiar)                    
                 else:
+                    
                     print ("Codigo de propietario inexistente")
         except:
+            
             print("Ocurrio un problema")    
             
                     
-    elif opcion == 8:   #Actualizar Propietario  
-        try:            
+    elif opcion == 8: #Actualizar Propietario  
+        try:          
             
             propietario = conexion.listarPropietarios()                          
             
             if len(propietario) > 0:              
                 
                 cAPropietario = funciones.datosActualizacionPropietario(propietario)
+                print(cAPropietario)
+                
                 if cAPropietario :
+                    print("pasando if")
                     
                     conexion.actualizarPropietario(cAPropietario)
+                     
                 else:
                     print ("Codigo de propietario inexistente")
         except:
-            print(" Ocurrio un problema")
+            print(" Menu> Ocurrio un problema ")
 
 
 #                     ALQUILERES
     elif opcion == 9:   #Mostrar  Alquileres
-      
+        os.system("cls")
         try:
             alquileres = conexion.listarAlquileres() 
             if len(alquileres) > 0:
@@ -207,8 +212,8 @@ def ejecutaropcion(opcion):
             conexion.registrarAlquileres(alquileres)
             print('🚩menu')
         except:
-            print("Ocurrio un problema")
-          
+            print("Ocurrio un problema volviendo al menu")
+            time.sleep(5)
             
     elif opcion == 11:  #Eliminar  Alquileres
         try:
@@ -287,5 +292,7 @@ def ejecutaropcion(opcion):
     
     else: 
         print ("Opcion no Valida")
-               
+        
+        
+time.sleep(2)              
 menuprincipal()

@@ -11,7 +11,7 @@ def listarpropietario(propietario):
   
   for propiet in propietario:
     
-    datos  =  "|[{0}]--[{1}]--[{2}]--[{3}]--[{4}]--[{5}]|"
+    datos  =  "||_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|"
     #idpropietario, nombre, apellido, direccion, telefono, email
     print(datos.format(propiet[0], propiet[1], propiet[2], propiet[3], propiet[4], propiet[5]))
 
@@ -63,28 +63,29 @@ def datosActualizacionPropietario(propietario):
   
   listarpropietario(propietario)
   eCodigoPropietario = False
-  propietario = (input("Ingrese el codigo del curso a actualizar> "))
+  APropietario = int(input("Ingrese el codigo del curso a actualizar> "))
 
   for propis in propietario:         
       
-    if propis[0] == propietario:      
+    if propis[0] == APropietario:      
         
         eCodigoPropietario = True       
         break    
       
   if not eCodigoPropietario:
-      cAPropietario = " "
+      APropietario = " "
       
   if eCodigoPropietario:
+    
       nombre =  input("Nuevo Nombre del Propietario ? ")
       apellido  =  input("Nuevo Apellido del Propietario ? ")
       direccion =  input("Nuevo Direccion del Propietario? ")
       telefono  =  float(input("Nuevo telefono del propietario? "))  
       emailPropietario = input("Nuevo email del propietario?")  
-
-      propietario  =  (nombre, apellido, direccion, telefono, emailPropietario)
+      idpropietario = int(APropietario)
+      nuevopropietario  =  (nombre, apellido, direccion, telefono, emailPropietario, idpropietario)
       
-      return propietario
+      return nuevopropietario
 
   else:
       propietario = None
@@ -96,7 +97,7 @@ def listarpropiedades(propiedades):
   
   for prop in propiedades:
     
-    datos  =  "[{0}]--[{1}]--[{2}]--[{3}]--[{4}]--[{5}]--[{6}]--[{7}]--[{8}]--[{9}]"
+    datos  =  "|_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|___|[{6}]|___|[{7}]|___|[{8}]|___|[{9}]"
     #direccionpropiedad, baños, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad, propietario_idpropietario
     print(datos.format(prop[0], prop[1], prop[2], prop[3], prop[4], prop[5], prop[6], prop[7],prop[8],prop[9]))
     
@@ -158,7 +159,7 @@ def listaralquileres(alquileres):
   
   for alqui in alquileres:
     
-    datos  =  "|[{0}]--[{1}]--[{2}]--[{3}]--[{4}]--[{5}]|"
+    datos  =  "||_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|"
     #idpropietario, nombre, apellido, direccion, telefono, email
     print(datos.format(alqui[0], alqui[1], alqui[2], alqui[3], alqui[4], alqui[5]))
 
@@ -219,7 +220,7 @@ def listarclientes(clientes):
   
   for cli in clientes:
     
-    datos = "|[{0}],[{2}],[{3}],[{4}],[{5}]]|"
+    datos = "||_{0}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]||"
     print(datos.format(cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]))
 
 def pedirDatosClientes():
