@@ -57,6 +57,39 @@ def datosEliminarPropietario(propietario):
       cPropietarioEliminiar = " "
       
     return cPropietarioEliminiar
+  
+  
+def datosActualizacionPropietario(propietario):
+  
+  listarpropietario(propietario)
+  eCodigoPropietario = False
+  propietario = (input("Ingrese el codigo del curso a actualizar> "))
+
+  for propis in propietario:         
+      
+    if propis[0] == propietario:      
+        
+        eCodigoPropietario = True       
+        break    
+      
+  if not eCodigoPropietario:
+      cAPropietario = " "
+      
+  if eCodigoPropietario:
+      nombre =  input("Nuevo Nombre del Propietario ? ")
+      apellido  =  input("Nuevo Apellido del Propietario ? ")
+      direccion =  input("Nuevo Direccion del Propietario? ")
+      telefono  =  float(input("Nuevo telefono del propietario? "))  
+      emailPropietario = input("Nuevo email del propietario?")  
+
+      propietario  =  (nombre, apellido, direccion, telefono, emailPropietario)
+      
+      return propietario
+
+  else:
+      propietario = None
+
+      return propietario
 
 #                                       PROPIEDADES
 def listarpropiedades(propiedades):

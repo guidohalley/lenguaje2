@@ -171,10 +171,20 @@ def ejecutaropcion(opcion):
             
                     
     elif opcion == 8:   #Actualizar Propietario  
-        try:
-          print(x)
+        try:            
+            
+            propietario = conexion.listarPropietarios()                          
+            
+            if len(propietario) > 0:              
+                
+                cAPropietario = funciones.datosActualizacionPropietario(propietario)
+                if cAPropietario :
+                    
+                    conexion.actualizarPropietario(cAPropietario)
+                else:
+                    print ("Codigo de propietario inexistente")
         except:
-          print('An exception occurred')
+            print(" Ocurrio un problema")
 
 
 #                     ALQUILERES
@@ -274,12 +284,7 @@ def ejecutaropcion(opcion):
           
           
           
-    elif opcion == 17:  #Actualizar Clientes
-        try:
-          apellidoProp = funcion.buscarProp()
-          if len(apellidoProp)
-        except:
-          print('An exception occurred')
+    
     else: 
         print ("Opcion no Valida")
                

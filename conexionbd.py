@@ -76,7 +76,24 @@ class Conexion:
                 
             except Error as ex: 
                                
-                print("Error en conexion: {0}".format(ex)) 
+                print("Error en conexion: {0}".format(ex))
+                
+    def actualizarPropietario(self, cAPropietario):
+        
+         if self.inmobiliaria.is_connected():
+            
+            try:
+                
+                mycursor=self.inmobiliaria.cursor()               
+                #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
+                sql = "UPDATE propietario set nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = {3}, email = '{4}';"
+                mycursor.execute(sql.format(cAPropietario[0],cAPropietario[1], cAPropietario[2], cAPropietario[3], cAPropietario[4]))
+                self.inmobiliaria.commit()
+                print("Propietario Actualizado")
+                
+            except Error as ex:
+                
+                print("Error en conexion: {0}".format(ex))
 #                                                                           PROPIEDADES 
        
     def listarPropiedades(self):
