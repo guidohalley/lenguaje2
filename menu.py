@@ -47,13 +47,13 @@ def menuprincipal():
             print("9 - Ver")
             print("10- Insertar ")            
             print("11- Eliminar ")
-            # print("  12- Actualizar Propietario")
+            print("12- Actualizar Alquiler")
             
             print("---------Operaciones de Cliente--------")
             print(" 13- Ver")
             print(" 14- Insertar ")            
             print(" 15- Eliminar ")
-            # print("  16- Actualizar Propietario")
+            # print(" 16- Actualizar Cliente")
             print(" ________________________________________")        
             print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
@@ -181,15 +181,14 @@ def ejecutaropcion(opcion):
                 cAPropietario = funciones.datosActualizacionPropietario(propietario)
                 print(cAPropietario)
                 
-                if cAPropietario :
-                    print("pasando if")
+                if cAPropietario :                    
                     
                     conexion.actualizarPropietario(cAPropietario)
                      
                 else:
                     print ("Codigo de propietario inexistente")
         except:
-            print(" Menu> Ocurrio un problema ")
+            print(" Menu 8 > Ocurrio un problema ")
 
 
 #                     ALQUILERES
@@ -227,14 +226,27 @@ def ejecutaropcion(opcion):
             else:
                 print(" el codigo de Alquiler no fue encontrado...")
         except:
-          print('Ha ocurrido un problema')
+          print(" Menu 11 > Ocurrio un problema ")
     
     
     elif opcion == 12:  #Actualizar Alquileres
-        try:
-          print(x)
+        try:          
+            
+            alquiler = conexion.listarAlquileres()                          
+            
+            if len(alquiler) > 0:              
+                
+                cAAlquiler = funciones.datosActualizacionAlquileres(alquiler)
+                print(cAAlquiler)
+                
+                if cAAlquiler :                    
+                    
+                    conexion.actualizarAlquiler(cAAlquiler)
+                        
+            else:
+                print ("Codigo de Alquiler inexistente")
         except:
-          print('An exception occurred')
+            print(" Menu 12 > Ocurrio un problema ")
         
 #                     CLIENTE
     elif opcion == 13:  #Mostrar Clientes

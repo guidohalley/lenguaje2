@@ -63,7 +63,7 @@ def datosActualizacionPropietario(propietario):
   
   listarpropietario(propietario)
   eCodigoPropietario = False
-  APropietario = int(input("Ingrese el codigo del curso a actualizar> "))
+  APropietario = int(input("Ingrese el codigo del Propietario a actualizar> "))
 
   for propis in propietario:         
       
@@ -201,7 +201,8 @@ def datosEliminarAlquiler(alquiler):
   
   existeCodAlquiler = False
   listaralquileres(alquiler)  
-  cAlquilerEliminar = int(input("Ingrese el ID del alquiler que desea eliminar> "))  
+  cAlquilerEliminar = int(input("Ingrese el ID del alquiler que desea eliminar> "))
+    
   for alqui in alquiler:
     
     if alqui[0] == cAlquilerEliminar:
@@ -213,6 +214,55 @@ def datosEliminarAlquiler(alquiler):
     cAlquilerEliminar = " "    
     
   return cAlquilerEliminar
+
+
+
+def datosActualizacionAlquileres(alquiler):
+  
+  listaralquileres(alquiler)  
+  eCodigoAlquier = False
+  
+  AAlquiler = int(input("ingrese el Codiog de Alquiler a actualizar> "))
+
+  for act in alquiler:         
+      
+    if act[0] == AAlquiler:      
+        
+      eCodigoAlquier = True       
+      break    
+      
+  if not eCodigoAlquier:
+    AAlquiler = " "
+      
+  if eCodigoAlquier:
+    
+    anContrato = int(input("Ingrese Nuevo Año Inicial del contrato de alquiler: "))
+    meContrato = int(input("Ingrese Nuevo Mes Inicial del contrato de alquiler"))
+    dContrato = int(input("Ingrese Nuevo día Inicial del contrato de alquiler"))
+    fechaconini =  date(anContrato,meContrato,dContrato)
+    print("la fecha del contrato inicial es> ", fechaconini)
+    
+    anContratof = int(input("Ingrese Nuevo Año final del contrato de alquiler: "))
+    meContratof = int(input("Ingrese Nuevo Mes final del contrato de alquiler"))
+    dContratof = int(input("Ingrese Nuevo día final del contrato de alquiler"))
+    fechaconfin =  date(anContratof,meContratof,dContratof)
+    print("la fecha ingresada es> ", fechaconfin)
+    
+    
+    empleadoinmo =  input("Ingrese Nuevo el empleado de la Inmobiliaria> ")
+    montoalquile =  float(input("Ingrese Nuevo el Valor del Alquiler"))  
+    propiedad_idpropiedad = int(input("Ingrese Nuevo el Codigo de propiedad"))
+    idalquiler=int(AAlquiler)  
+    nuevoalquiler  =  (fechaconini, fechaconfin, empleadoinmo, montoalquile, propiedad_idpropiedad,idalquiler)
+                      #  '{0}','{1}','{2}',{3},'{4}','{5}'
+                      #   nuevoalquiler[0],nuevoalquiler[1],nuevoalquiler[2],nuevoalquiler[3],nuevoalquiler[4],nuevoalquiler[5]
+    print(nuevoalquiler)
+    return nuevoalquiler
+
+  else:
+      propietario = None
+
+      return propietario
 
 #                                          CLIENTE
 
@@ -253,7 +303,8 @@ def datosEliminarCliente(cliente):
   
   existeCodCliente = False  
   listarclientes(cliente)  
-  cClienteEliminar = int(input("Ingrese el ID del cliente que desea eliminar> ")) 
+  cClienteEliminar = int(input("Ingrese el ID del cliente que desea eliminar> "))
+   
   for clien in cliente:  
       
     if clien[0] == cClienteEliminar:

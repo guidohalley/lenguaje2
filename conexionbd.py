@@ -79,22 +79,16 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))
                 
     def actualizarPropietario(self, cAPropietario):        
-        print("Entrando conexion >>>>>>>>⬆️🏁<<<<<<<")
+
         if self.inmobiliaria.is_connected():               
             
             try:
-                print(">>>>>>>>🚩🏁<<<<<<<")
+                
                 mycursor=self.inmobiliaria.cursor()               
                 #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
                 sql = "UPDATE inmobiliaria.propietario SET nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = {3}, email = '{4}' WHERE (idpropietario = '{5}');"
-                print(">>>>>>>>🏁<<<<<<<")               
-                
                 mycursor.execute(sql.format(cAPropietario[0],cAPropietario[1], cAPropietario[2], cAPropietario[3], cAPropietario[4], cAPropietario[5]))
-                print("🏁execute")            
                 self.inmobiliaria.commit()
-                print("🏁Commit")
-                
-                
                 print("Propietario Actualizado")
             except Error as ex:
                 
@@ -199,8 +193,26 @@ class Conexion:
                 
             except Error as ex:     
                            
-                print("Error en conexion: {0}".format(ex)) 
-            
+                print("Error en conexion: {0}".format(ex))
+                
+                
+    def actualizarAlquiler(self, cAAlquiler):        
+
+            if self.inmobiliaria.is_connected():               
+                
+                try:
+                    
+                    mycursor=self.inmobiliaria.cursor()               
+                    #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
+                    sql ="UPDATE inmobiliaria.alquiler SET fechaconini = '{0}', fechaconfin = '{1}', empleadoinmo = '{2}', montoalquiler = '{3}', propiedad_idpropiedad = '{4}' WHERE (idalquiler = '{5}');" 
+                    mycursor.execute(sql.format(cAAlquiler[0],cAAlquiler[1], cAAlquiler[2], cAAlquiler[3], cAAlquiler[4],cAAlquiler[5]))
+                    self.inmobiliaria.commit()
+                    print("Alquiler Actualizado")
+                    
+                except Error as ex:
+                    
+                    print("Error en conexion: {0}".format(ex)) 
+                    print("Debe actualizar otra tabla primero")
                 
 #                                                                          CLIENTES
     def listarClientes(self):
