@@ -152,7 +152,45 @@ def datosEliminarPropiedad(propiedad):
       
       codigoEliminar = " "
             
-    return codigoEliminar 
+    return codigoEliminar
+  
+def datosActualizacionPropiedad(propis):
+  
+  listarclientes(propis)  
+  eCodigoPropiedad = False
+  
+  cAPropiedad= int(input("ingrese el Codiog de Propiedad a actualizar> "))
+
+  for pro in propis:         
+      
+    if pro[0] == cAPropiedad:      
+        
+      eCodigoPropiedad = True       
+      break    
+      
+  if not eCodigoPropiedad:
+    cAPropiedad = " "
+      
+  if eCodigoPropiedad:    
+    
+    #apellidopropeitario = ("Ingrese el apellido del propietario")
+    direccionpropiedad  =  input("Ingrese la nueva direccion de la propiedad: ")
+    banios  =  input("ingrese la nueva cantidad de banios: ")
+    serviciosluz =  input("Ahora tiene servicio de luz? : ")
+    servicioagua  =  input("Ahora Tiene servicio agua ? : ")  
+    cochera =  int(input("Vuelva ingrese mt2 de cochera: "))  
+    mt2 = int(input("Vuelva ingresar los mt2: "))
+    dormitorios = int(input("Vuelva a ingresar la cantidad de dormitorios: "))
+    valorpropiedad  =  float(input("Vuelva ingresar el valor de la propiedad: "))
+    propietario_idpropietario = int(input("Ingrese id de propietario"))
+    idPropiedad = int(cAPropiedad) 
+    nuevapropiedad  =  (direccionpropiedad, banios, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad,propietario_idpropietario,idPropiedad)
+   
+    return nuevapropiedad
+  else:
+      nuevapropiedad = None
+
+      return nuevapropiedad 
     
 #                                         ALQUILERES
 def listaralquileres(alquileres):
@@ -317,3 +355,39 @@ def datosEliminarCliente(cliente):
       cClienteEliminar = " "  
 
   return cClienteEliminar
+
+def datosActualizacionCliente(cliente):
+  
+  listarclientes(cliente)  
+  eCodigoCliente = False
+  
+  ACliente= int(input("ingrese el Codiog de Cliente a actualizar> "))
+
+  for client in cliente:         
+      
+    if client[0] == ACliente:      
+        
+      eCodigoCliente = True       
+      break    
+      
+  if not eCodigoCliente:
+    ACliente = " "
+      
+  if eCodigoCliente:
+    
+    nombreCli =  input("Nuevo Nombre del Cliente? ")
+    apellidoCli  =  input("Nuevo Apellido del Cliente ? ")
+    direccionCli =  input("Nuevo Direccion del Cliente? ")
+    telefonoCli  =  float(input("telefono del cliente? "))  
+    garante = input("Nuevo Nombre del garante> ")
+    Calquiler_idalquiler = int(input("ingrese el id del alquiler> "))
+    idcliente = int(ACliente)
+    nuevocliente =  (nombreCli, apellidoCli, direccionCli, telefonoCli, garante, Calquiler_idalquiler, idcliente)
+                    #'{0}',        '{1}',       '{2}',        {3},      '{4}',          {5},            '{6}'
+                    #nuevocliente[0], nuevocliente[1], nuevocliente[2], nuevocliente[3], nuevocliente[4], nuevocliente[5], nuevocliente[6]     
+    return nuevocliente
+
+  else:
+      propietario = None
+
+      return propietario

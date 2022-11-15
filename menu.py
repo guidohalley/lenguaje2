@@ -35,7 +35,7 @@ def menuprincipal():
             print("1 - Ver ")
             print("2 - Insertar ")
             print("3 - Eliminar ")
-            #print(" 4- Actualizar una Propiedad") 
+            print(" 4- Actualizar una Propiedad") 
             
             print("---------Operaciones de Propietario--------")
             print("5 - Ver ")
@@ -53,7 +53,7 @@ def menuprincipal():
             print(" 13- Ver")
             print(" 14- Insertar ")            
             print(" 15- Eliminar ")
-            # print(" 16- Actualizar Cliente")
+            print(" 16- Actualizar Cliente")
             print(" ________________________________________")        
             print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
@@ -114,17 +114,24 @@ def ejecutaropcion(opcion):
             
                              
     elif opcion == 4:       #Actualizar Propieades
-        try:
-          print(x)
+        
+        try:          
+                    
+            propis = conexion.listarPropiedades()                          
+            
+            if len(propis) > 0:              
+                
+                cAPropiedades = funciones.datosActualizacionPropiedad(propis)
+                print(cAPropiedades)
+                
+                if cAPropiedades :                    
+                    
+                    conexion.actualizarPropiedad(cAPropiedades)
+                        
+            else:
+                print ("Codigo de Propiedad inexistente")
         except:
-          print('An exception occurred')
-        
-        
-        
-        try:
-           print("Proyecto no listo")
-        except:
-            print("A ocurrido un problema")
+            print(" Menu 4 > Ocurrio un problema ")
 
 #                     PROPIETARIO            
     elif opcion == 5:   #Listar Propietarios
@@ -293,11 +300,26 @@ def ejecutaropcion(opcion):
         except:
             
           print('Ha ocurrido un problema')
+          
     elif opcion == 16:  #Actualizar Clientes
-        try:
-          print(x)
+        
+        try:          
+            
+            cliente = conexion.listarClientes()                          
+            
+            if len(cliente) > 0:              
+                
+                cACliente = funciones.datosActualizacionCliente(cliente)
+                print(cACliente)
+                
+                if cACliente :                    
+                    
+                    conexion.actualizarCliente(cACliente)
+                        
+            else:
+                print ("Codigo de Alquiler inexistente")
         except:
-          print('An exception occurred')
+            print(" Menu 16 > Ocurrio un problema ")
           
           
           
@@ -306,5 +328,5 @@ def ejecutaropcion(opcion):
         print ("Opcion no Valida")
         
         
-time.sleep(2)              
+time.sleep(1)              
 menuprincipal()

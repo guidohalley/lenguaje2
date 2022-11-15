@@ -145,7 +145,24 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))
                 print("No se puede Eliminar una propiedad en Alquiler")
                 time.sleep(5)
-                os.system("cls")   
+                os.system("cls") 
+                
+    def actualizarPropiedad(self, cAPropiedades):        
+
+        if self.inmobiliaria.is_connected():               
+            
+            try:
+                
+                mycursor=self.inmobiliaria.cursor()               
+                #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
+                sql = "UPDATE inmobiliaria.propiedad SET direccionpropiedad = '{0}', baños = '{1}', serviciosluz = '{2}', servicioagua = '{3}', cochera = '{4}', mt2 = {5}, dormitorios = {6}, valorpropiedad = {7}, propietario_idpropietario = '{8}' WHERE (idpropiedad = '{9}');"
+                
+                mycursor.execute(sql.format(cAPropiedades[0],cAPropiedades[1], cAPropiedades[2], cAPropiedades[3], cAPropiedades[4], cAPropiedades[5], cAPropiedades[6], cAPropiedades[7], cAPropiedades[8], cAPropiedades[9]))
+                self.inmobiliaria.commit()
+                print("Propietario Actualizado")
+            except Error as ex:
+                
+                print("Error en conexion: {0}".format(ex))
   
 #                                                                          ALQUILERES
 
@@ -212,7 +229,7 @@ class Conexion:
                 except Error as ex:
                     
                     print("Error en conexion: {0}".format(ex)) 
-                    print("Debe actualizar otra tabla primero")
+                    print("A lo mejor debe borrar otra tabla primero")
                 
 #                                                                          CLIENTES
     def listarClientes(self):
@@ -258,6 +275,22 @@ class Conexion:
                 
             except Error as ex:  
                               
-                print("Error en conexion: {0}".format(ex)) 
+                print("Error en conexion: {0}".format(ex))
+                
+    def actualizarCliente(self, cACliente):
+
+        if self.inmobiliaria.is_connected():               
+                
+                try:
+
+                    mycursor=self.inmobiliaria.cursor() 
+                    sql ="UPDATE inmobiliaria.cliente SET nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = '{3}', nombregarante = '{4}', alquiler_idalquiler = '{5}' WHERE (idcliente = '{6}');" 
+                    mycursor.execute(sql.format(cACliente[0],cACliente[1], cACliente[2], cACliente[3], cACliente[4],cACliente[5],cACliente[6]))
+                    self.inmobiliaria.commit()  
+                    print("Cliente Actualizado")
+                    
+                except Error as ex:                    
+                    print("Error en conexion: {0}".format(ex)) 
+                    print("No se Actualizo Cliente")
           
      
