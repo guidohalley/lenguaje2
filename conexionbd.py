@@ -119,7 +119,7 @@ class Conexion:
                 sql = "insert into propiedad (direccionpropiedad, baños, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad, propietario_idpropietario) values ('{0}', '{1}', '{2}', '{3}', '{4}', {5}, {6}, {7},{8});"
                 mycursor.execute(sql.format(propiedad[0], propiedad[1], propiedad[2], propiedad[3], propiedad[4], propiedad[5], propiedad[6], propiedad[7],propiedad[8]))
                 self.inmobiliaria.commit()
-                print('🚩 Propiedad Registrada')               
+                              
                 print("Propiedad Ingresado correctamente\n")
                                 
             except Error as ex:
