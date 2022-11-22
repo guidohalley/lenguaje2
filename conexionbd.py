@@ -277,6 +277,7 @@ class Conexion:
                               
                 print("Error en conexion: {0}".format(ex))
                 
+                
     def actualizarCliente(self, cACliente):
 
         if self.inmobiliaria.is_connected():               
@@ -292,5 +293,23 @@ class Conexion:
                 except Error as ex:                    
                     print("Error en conexion: {0}".format(ex)) 
                     print("No se Actualizo Cliente")
+                    
+    def buscarCLiente(self, cliente):
+
+        if self.inmobiliaria.is_connected():               
+                
+                try:
+
+                    mycursor=self.inmobiliaria.cursor() 
+                    sql ="SELECT nombre FROM inmobiliaria.cliente WHERE nombre LIKE '%{0}%';" 
+                    mycursor.execute(sql.format(cliente[0]))
+                    #self.inmobiliaria.commit()
+                    busqueda = mycursor.fetchall()  
+                    return busqueda
+                    
+                except Error as ex:
+                                        
+                    print("Error en conexion: {0}".format(ex)) 
+                    print("No se Encontro Cliente")
           
      

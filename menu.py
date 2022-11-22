@@ -35,7 +35,7 @@ def menuprincipal():
             print("1 - Ver ")
             print("2 - Insertar ")
             print("3 - Eliminar ")
-            print(" 4- Actualizar una Propiedad") 
+            print("4- Actualizar una Propiedad") 
             
             print("---------Operaciones de Propietario--------")
             print("5 - Ver ")
@@ -54,11 +54,12 @@ def menuprincipal():
             print(" 14- Insertar ")            
             print(" 15- Eliminar ")
             print(" 16- Actualizar Cliente")
+            print(" 17- Buscar por una letra un Cliente ")
             print(" ________________________________________")        
             print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
 
-            if opcion < 0 or opcion > 16:
+            if opcion < 0 or opcion > 17:
                 print("Opcion incorrecta, ingrese nuevamente")
                 
             elif opcion == 0:
@@ -320,6 +321,23 @@ def ejecutaropcion(opcion):
                 print ("Codigo de Alquiler inexistente")
         except:
             print(" Menu 16 > Ocurrio un problema ")
+            
+            
+    elif opcion == 17:  #Buscar Cliente x nombre
+        
+        try:
+            os.system("cls")          
+            cliente = input("ingrese el la letra del nombre del cliente> ") 
+            bCliente = conexion.buscarCLiente(cliente)
+            if bCliente != []:
+                
+                print("Se encontro  a>  ", bCliente, "\n Volviendo al Menu Principal ")
+                time.sleep(3)
+            else:
+                print ("No se encontraron Registros")
+                
+        except:
+            print(" Menu 17 > Ocurrio un problema ")
           
           
           

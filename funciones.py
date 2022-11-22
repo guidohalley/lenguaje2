@@ -386,8 +386,3 @@ def datosActualizacionCliente(cliente):
                     #'{0}',        '{1}',       '{2}',        {3},      '{4}',          {5},            '{6}'
                     #nuevocliente[0], nuevocliente[1], nuevocliente[2], nuevocliente[3], nuevocliente[4], nuevocliente[5], nuevocliente[6]     
     return nuevocliente
-
-  else:
-      propietario = None
-
-      return propietario
