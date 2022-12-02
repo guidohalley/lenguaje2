@@ -323,17 +323,15 @@ def datosActualizacionAlquileres(alquiler):
 
 def listarclientes(clientes):  
   
+    os.system("cls")
+    print(tabulate(clientes, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID ALQUILER"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
         
     # for cli in clientes:      
     #   datos  = [[cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]]]   
     
-    os.system("cls")
-    print(tabulate(clientes, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID ALQUILER"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
     # respuesta = input("\n\nPresione Enter para volver al menu principal...")
     # if respuesta == "":
-    #     time.sleep(1)   
-
-    
+    #     time.sleep(1)    
     
       
       

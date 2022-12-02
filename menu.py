@@ -2,6 +2,7 @@
 # coding :-*-  UTF-8 -*-
 import os
 import time
+from tabulate import tabulate
 
 import funciones
 from conexionbd import Conexion
@@ -277,11 +278,13 @@ def ejecutaropcion(opcion):
             bAlquiler = conexion.buscarAlquiler(alquiler)
             if bAlquiler != []:
                 
-                print("Se encontro  a>  ", bAlquiler, "\n Volviendo al Menu Principal ")
-                # respuesta = input("Presione Enter para volver al menu principal...")
-                # if respuesta == "":
-                #     time.sleep(3)
-                #     os.system("cls")
+                print("Se encontraron los siguientes montos> \n")
+                montoAlq = bAlquiler
+                print(tabulate(montoAlq, headers=["MONTOS ENCONTRADOS"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
+                respuesta = input("Presione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(3)
+                    os.system("cls")
             else:
                 print ("No se encontraron Registros")
                 
@@ -296,7 +299,11 @@ def ejecutaropcion(opcion):
             if len(clientes) > 0:
                 
                 funciones.listarclientes(clientes)
-                os.system("cls")              
+                respuesta = input("\n\nPresione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(1)
+                    os.system("cls")
+                             
             else:
                 
               print("Ocurrio un problema ...")
@@ -364,7 +371,10 @@ def ejecutaropcion(opcion):
             bCliente = conexion.buscarCLiente(cliente)
             if bCliente != []:
                 
-                print("Se encontro  a>  ", bCliente, "\n Volviendo al Menu Principal ")
+                #print("Se encontro  a>  ", bCliente, "\n Volviendo al Menu Principal ")
+                
+                busqCliente = bCliente
+                print(tabulate(busqCliente, headers=["SE ENCONTRO A "],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
                 respuesta = input("Presione Enter para volver al menu principal...")
                 if respuesta == "":
                     time.sleep(3)
