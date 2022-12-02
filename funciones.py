@@ -1,19 +1,19 @@
-import os
-import conexionbd
+# coding :-*-  UTF-8 -*-
 
-from datetime import date, datetime
+import os
+import time
+import conexionbd
+from tabulate import tabulate
 
 
 #                                      PROPIETARIO
 
 
 def listarpropietario(propietario):
-  
-  for propiet in propietario:
     
-    datos  =  "||_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|"
-    #idpropietario, nombre, apellido, direccion, telefono, email
-    print(datos.format(propiet[0], propiet[1], propiet[2], propiet[3], propiet[4], propiet[5]))
+
+    os.system("cls")
+    print(tabulate(propietario, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID DE ALGO"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
 
 
 def pedirDatosPropietario():
@@ -95,13 +95,17 @@ def datosActualizacionPropietario(propietario):
 #                                       PROPIEDADES
 def listarpropiedades(propiedades):
   
-  for prop in propiedades:
-    
-    datos  =  "|_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|___|[{6}]|___|[{7}]|___|[{8}]|___|[{9}]"
-    #direccionpropiedad, baños, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad, propietario_idpropietario
-    print(datos.format(prop[0], prop[1], prop[2], prop[3], prop[4], prop[5], prop[6], prop[7],prop[8],prop[9]))
-    
+  os.system("cls")
+  print(tabulate(propiedades, headers=["ID","DIRECCION PROPIEDAD","BAÑOS","LUZ","AGUA","COCHERA","MT2","DORMITORIOS","VALOR PROPIEDAD", "ID DE PROPIETARIO"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
+  # respuesta = input("\n\nPresione Enter para volver al menu principal...")
+  # if respuesta == "":
+  #     time.sleep(1)
+  #     os.system("cls") 
+      
+      
 def pedirDatosPropiedad():
+  
+  
   
   '''
   Table: propiedad
@@ -118,8 +122,8 @@ def pedirDatosPropiedad():
   propietario_idpropietario int
   #Tabla
 
-  '''  
-  
+  '''   
+  os.system("cls")
   direccionpropiedad  =  input("Ingrese la direccion de la propiedad: ")
   banios  =  input("ingrese la cantidad de banios: ")
   serviciosluz =  input("tiene servicio de luz? : ")
@@ -128,7 +132,7 @@ def pedirDatosPropiedad():
   mt2 = int(input("ingrese los mt2: "))
   dormitorios = int(input("ingrese la cantidad de dormitorios: "))
   valorpropiedad  =  float(input("ingrese el valor de la propiedad: "))
-  #propietario_idpropietario = int(input("Ingrese id de propietario"))
+  propietario_idpropietario = int(input("Ingrese id de propietario"))
   apellidopropeitario = ("Ingrese el apellido del propietario") 
   propiedad  =  (direccionpropiedad, banios, serviciosluz, servicioagua, cochera, mt2, dormitorios, valorpropiedad,propietario_idpropietario)
   
@@ -156,10 +160,12 @@ def datosEliminarPropiedad(propiedad):
   
 def datosActualizacionPropiedad(propis):
   
-  listarclientes(propis)  
+  os.system("cls") 
+  listarpropiedades(propis)  
+   
   eCodigoPropiedad = False
   
-  cAPropiedad= int(input("ingrese el Codiog de Propiedad a actualizar> "))
+  cAPropiedad= int(input("ingrese el codigo de Propiedad a actualizar> "))
 
   for pro in propis:         
       
@@ -195,11 +201,17 @@ def datosActualizacionPropiedad(propis):
 #                                         ALQUILERES
 def listaralquileres(alquileres):
   
-  for alqui in alquileres:
+    os.system("cls")
+    print(tabulate(alquileres, headers=["ID","INICIO EN FECHA","TERMINA EN FECHA","ALQUILADO POR","MONTO","ID PROPIETARIO"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
+
+  #for alqui in alquileres:
     
-    datos  =  "||_[{0}]|___|[{1}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]|"
-    #idpropietario, nombre, apellido, direccion, telefono, email
-    print(datos.format(alqui[0], alqui[1], alqui[2], alqui[3], alqui[4], alqui[5]))
+    # #datos  =  "||_[{0}]|____________|[{1}]|____________|[{2}]|____________|[{3}]|____________|[{4}]|____________|[{5}]|"
+    # #idpropietario, nombre, apellido, direccion, telefono, email
+    # #print(datos.format(alqui[0], alqui[1], alqui[2], alqui[3], alqui[4], alqui[5]))
+    # json ="{0},{1},{2},{3},{4},{5},{6}"
+    # print(json)
+    
 
 def pedirDatosAlquileres():
   
@@ -301,16 +313,32 @@ def datosActualizacionAlquileres(alquiler):
       propietario = None
 
       return propietario
+    
+    
+    
 
 #                                          CLIENTE
 
-def listarclientes(clientes):
+def listarclientes(clientes):  
   
-  for cli in clientes:
+        
+    # for cli in clientes:      
+    #   datos  = [[cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]]]   
     
-    datos = "||_{0}]|___|[{2}]|___|[{3}]|___|[{4}]|___|[{5}]||"
-    print(datos.format(cli[0], cli[1], cli[2], cli[3], cli[4], cli[5]))
+    os.system("cls")
+    print(tabulate(clientes, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID ALQUILER"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
+    respuesta = input("\n\nPresione Enter para volver al menu principal...")
+    if respuesta == "":
+        time.sleep(1)   
 
+    
+    
+      
+      
+    
+      
+
+    
 def pedirDatosClientes():
   
   '''

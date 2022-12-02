@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding :-*-  UTF-8 -*-
 
+import json
 import os
 import time
 
@@ -13,6 +14,7 @@ from mysql.connector import Error
 class Conexion:
     #conexion    
     def __init__(self):
+        
               
         try:
             
@@ -33,23 +35,24 @@ class Conexion:
 #                                                                           PROPIETARIO
             
     def listarPropietarios(self):
-        
-            if self.inmobiliaria.is_connected():
+        os.system("cls")
+    
+        if self.inmobiliaria.is_connected():
+            
+            try:
+                mycursor = self.inmobiliaria.cursor()
+                mycursor.execute("SELECT * FROM inmobiliaria.propietario;")
+                lista = mycursor.fetchall()                
+                # for x in lista:
+                #     print(x) 
+            except Error as ex:
                 
-                try:
-                    mycursor = self.inmobiliaria.cursor()
-                    mycursor.execute("SELECT * FROM inmobiliaria.propietario;")
-                    lista = mycursor.fetchall()                
-                    # for x in lista:
-                    #     print(x) 
-                except Error as ex:
-                    
-                    print("Error en conexion: {0}".format(ex)) 
-                                   
-            return lista
+                print("Error en conexion: {0}".format(ex)) 
+                                
+        return lista
 
     def registrarPropietario(self, propietario):       
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():
             
             try:
@@ -65,21 +68,25 @@ class Conexion:
                 
                 
     def elminarPropietario(self, cPropietarioEliminiar):
-           
+        os.system("cls")   
         if self.inmobiliaria.is_connected():
             try:        
                                 
                 mycursor=self.inmobiliaria.cursor()
                 sql = "DELETE FROM propietario WHERE idpropietario = '{0}'; "
                 mycursor.execute(sql.format(cPropietarioEliminiar)) 
-                self.inmobiliaria.commit()               
+                self.inmobiliaria.commit()
+                os.system("cls")
+                print("Propietario Eliminado Correctamente .. ")
+                time.sleep(2)
+                os.system("cls")
                 
             except Error as ex: 
                                
                 print("Error en conexion: {0}".format(ex))
                 
     def actualizarPropietario(self, cAPropietario):        
-
+        os.system("cls")
         if self.inmobiliaria.is_connected():               
             
             try:
@@ -96,7 +103,7 @@ class Conexion:
     #                                                                           PROPIEDADES 
        
     def listarPropiedades(self):
-
+        os.system("cls")
         if self.inmobiliaria.is_connected():
             try:
                 
@@ -111,7 +118,7 @@ class Conexion:
         return lista
 
     def registrarPropiedad(self, propiedad):        
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():
             try:
                 
@@ -121,6 +128,8 @@ class Conexion:
                 self.inmobiliaria.commit()
                               
                 print("Propiedad Ingresado correctamente\n")
+                time.sleep(1)
+                os.system("cls")
                                 
             except Error as ex:
                 
@@ -129,7 +138,7 @@ class Conexion:
                 
     def elminarPropiedad(self, codigoEliminar):
 
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():         
                 
             try:               
@@ -139,7 +148,8 @@ class Conexion:
                 mycursor.execute(sql.format(codigoEliminar))              
                 self.inmobiliaria.commit()
                 # Error en conexion: 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`inmobiliaria`.`alquiler`, CONSTRAINT `fk_alquiler_propiedad1` FOREIGN KEY (`propiedad_idpropiedad`) REFERENCES `propiedad` (`idpropiedad`))
-                # Funciona, pero primiero hay que borrar alquiler. 
+                # Funciona, pero primiero hay que borrar alquiler.
+                print("Propiedad Eliminada Correctamente \n") 
             except Error as ex:
                                 
                 print("Error en conexion: {0}".format(ex))
@@ -148,7 +158,7 @@ class Conexion:
                 os.system("cls") 
                 
     def actualizarPropiedad(self, cAPropiedades):        
-
+        os.system("cls")
         if self.inmobiliaria.is_connected():               
             
             try:
@@ -159,7 +169,9 @@ class Conexion:
                 
                 mycursor.execute(sql.format(cAPropiedades[0],cAPropiedades[1], cAPropiedades[2], cAPropiedades[3], cAPropiedades[4], cAPropiedades[5], cAPropiedades[6], cAPropiedades[7], cAPropiedades[8], cAPropiedades[9]))
                 self.inmobiliaria.commit()
-                print("Propietario Actualizado")
+                print("Propietario Correctamente Actualizado \n")
+                time.sleep(1)
+                os.system("cls")
             except Error as ex:
                 
                 print("Error en conexion: {0}".format(ex))
@@ -167,7 +179,7 @@ class Conexion:
 #                                                                          ALQUILERES
 
     def listarAlquileres(self):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():# vemos si esta conectado
             try:
                 mycursor = self.inmobiliaria.cursor()
@@ -182,7 +194,7 @@ class Conexion:
         return lista
 
     def registrarAlquileres(self, alquiler):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():
 
             try:
@@ -199,7 +211,7 @@ class Conexion:
                 print("Error en conexion: {0}".format(ex))
     
     def eliminarAlquileres(self,cAlquilerEliminar):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():            
             try:       
                         
@@ -214,26 +226,49 @@ class Conexion:
                 
                 
     def actualizarAlquiler(self, cAAlquiler):        
-
+        os.system("cls")
+        if self.inmobiliaria.is_connected():               
+            
+            try:
+                
+                mycursor=self.inmobiliaria.cursor()               
+                #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
+                sql ="UPDATE inmobiliaria.alquiler SET fechaconini = '{0}', fechaconfin = '{1}', empleadoinmo = '{2}', montoalquiler = '{3}', propiedad_idpropiedad = '{4}' WHERE (idalquiler = '{5}');" 
+                mycursor.execute(sql.format(cAAlquiler[0],cAAlquiler[1], cAAlquiler[2], cAAlquiler[3], cAAlquiler[4],cAAlquiler[5]))
+                self.inmobiliaria.commit()
+                print("Alquiler Actualizado")
+                
+            except Error as ex:
+                
+                print("Error en conexion: {0}".format(ex)) 
+                print("A lo mejor debe borrar otra tabla primero")
+                
+    def buscarAlquiler(self, alquiler):
+            os.system("cls")
             if self.inmobiliaria.is_connected():               
-                
-                try:
                     
-                    mycursor=self.inmobiliaria.cursor()               
-                    #siempre fijarse bien aca que los enteros esten sin '' y los varchar entre ''
-                    sql ="UPDATE inmobiliaria.alquiler SET fechaconini = '{0}', fechaconfin = '{1}', empleadoinmo = '{2}', montoalquiler = '{3}', propiedad_idpropiedad = '{4}' WHERE (idalquiler = '{5}');" 
-                    mycursor.execute(sql.format(cAAlquiler[0],cAAlquiler[1], cAAlquiler[2], cAAlquiler[3], cAAlquiler[4],cAAlquiler[5]))
-                    self.inmobiliaria.commit()
-                    print("Alquiler Actualizado")
-                    
-                except Error as ex:
-                    
-                    print("Error en conexion: {0}".format(ex)) 
-                    print("A lo mejor debe borrar otra tabla primero")
-                
+                    try:
+
+                        mycursor=self.inmobiliaria.cursor() 
+                        sql ="SELECT montoalquiler FROM inmobiliaria.alquiler WHERE montoalquiler LIKE '%{0}%';" 
+                        mycursor.execute(sql.format(alquiler[0]))
+                        #self.inmobiliaria.commit()
+                        busqueda = mycursor.fetchall()
+                          
+                        return busqueda
+                        
+                    except Error as ex:
+                                            
+                        print("Error en conexion: {0}".format(ex)) 
+                        print("No se Encontro el Alquiler")
+
+
+
+
+
 #                                                                          CLIENTES
     def listarClientes(self):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():# vemos si esta conectado
             try:
                 
@@ -248,7 +283,7 @@ class Conexion:
         return lista
 
     def registrarClientes(self, cliente):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():
             try:
                 
@@ -263,7 +298,7 @@ class Conexion:
               
               
     def eliminarClientes(self, cClienteEliminar):
-        
+        os.system("cls")
         if self.inmobiliaria.is_connected():
 
             try:
@@ -279,7 +314,7 @@ class Conexion:
                 
                 
     def actualizarCliente(self, cACliente):
-
+        os.system("cls")
         if self.inmobiliaria.is_connected():               
                 
                 try:
@@ -295,7 +330,7 @@ class Conexion:
                     print("No se Actualizo Cliente")
                     
     def buscarCLiente(self, cliente):
-
+        os.system("cls")
         if self.inmobiliaria.is_connected():               
                 
                 try:

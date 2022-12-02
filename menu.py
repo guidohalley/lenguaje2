@@ -59,7 +59,7 @@ def menuprincipal():
             print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
 
-            if opcion < 0 or opcion > 17:
+            if opcion < 0 or opcion > 21:
                 print("Opcion incorrecta, ingrese nuevamente")
                 
             elif opcion == 0:
@@ -79,18 +79,21 @@ def ejecutaropcion(opcion):
         try:
             propiedades = conexion.listarPropiedades() 
             if len(propiedades) > 0:
-                funciones.listarpropiedades(propiedades) 
+                funciones.listarpropiedades(propiedades)
+                respuesta = input("\n\nPresione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(1)
+                    os.system("cls")  
             else:
-                print("no se encontraron registros")
+                print("No se encontraron registros....")
         except:            
             print("Ocurrio un problema")
                  
     elif opcion == 2:       #Registrar Propiedades
-              
-        #viene de funciones
+
         propiedades = funciones.pedirDatosPropiedad()        
         try:            
-            print('🚩')
+            
             conexion.registrarPropiedad(propiedades)
         except:
             print("Ocurrio un problema")
@@ -140,7 +143,11 @@ def ejecutaropcion(opcion):
         try:
             propietario = conexion.listarPropietarios() 
             if len(propietario) > 0:
-                funciones.listarpropietario(propietario) 
+                funciones.listarpropietario(propietario)
+                respuesta = input("\n\nPresione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(1)
+                    os.system("cls") 
             else:
                 print("no se encontraron registros")
         except:            
@@ -170,7 +177,8 @@ def ejecutaropcion(opcion):
                 cPropietarioEliminiar = funciones.datosEliminarPropietario(propietario) # es para pedir los datos que tenemos que eliminar.
                 if not(cPropietarioEliminiar == ' '):
                     
-                    conexion.elminarPropietario(cPropietarioEliminiar)                    
+                    conexion.elminarPropietario(cPropietarioEliminiar)
+                                        
                 else:
                     
                     print ("Codigo de propietario inexistente")
@@ -194,7 +202,7 @@ def ejecutaropcion(opcion):
                     conexion.actualizarPropietario(cAPropietario)
                      
                 else:
-                    print ("Codigo de propietario inexistente")
+                    print ("Codigo de Propietario inexistente")
         except:
             print(" Menu 8 > Ocurrio un problema ")
 
@@ -205,11 +213,15 @@ def ejecutaropcion(opcion):
         try:
             alquileres = conexion.listarAlquileres() 
             if len(alquileres) > 0:
-                funciones.listaralquileres(alquileres) 
+                funciones.listaralquileres(alquileres)
+                respuesta = input("\n\nPresione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(1)
+                    os.system("cls")                  
             else:
                 print("no se encontraron registros")
         except:            
-            print("Ocurrio un problema")
+            print("Menu 9> Ocurrio un problema")
             
                
     elif opcion == 10:  #Registrar Alquileres11
@@ -255,6 +267,25 @@ def ejecutaropcion(opcion):
                 print ("Codigo de Alquiler inexistente")
         except:
             print(" Menu 12 > Ocurrio un problema ")
+            
+    elif opcion == 18:  #Buscar Alquiler por el monto
+        
+        try:
+            os.system("cls")          
+            alquiler = input("ingrese el monto del alquiler vigente > ") 
+            bAlquiler = conexion.buscarAlquiler(alquiler)
+            if bAlquiler != []:
+                
+                print("Se encontro  a>  ", bAlquiler, "\n Volviendo al Menu Principal ")
+                respuesta = input("Presione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(3)
+                    os.system("cls")
+            else:
+                print ("No se encontraron Registros")
+                
+        except:
+            print(" Menu 13 > Ocurrio un problema ")
         
 #                     CLIENTE
     elif opcion == 13:  #Mostrar Clientes
@@ -263,7 +294,8 @@ def ejecutaropcion(opcion):
             clientes = conexion.listarClientes()
             if len(clientes) > 0:
                 
-                funciones.listarclientes(clientes)              
+                funciones.listarclientes(clientes)
+                os.system("cls")              
             else:
                 
               print("Ocurrio un problema ...")
@@ -332,6 +364,10 @@ def ejecutaropcion(opcion):
             if bCliente != []:
                 
                 print("Se encontro  a>  ", bCliente, "\n Volviendo al Menu Principal ")
+                respuesta = input("Presione Enter para volver al menu principal...")
+                if respuesta == "":
+                    time.sleep(3)
+                    os.system("cls")
                 time.sleep(3)
             else:
                 print ("No se encontraron Registros")
@@ -344,6 +380,7 @@ def ejecutaropcion(opcion):
     
     else: 
         print ("Opcion no Valida")
+        os.system("cls")
         
         
 time.sleep(1)              
