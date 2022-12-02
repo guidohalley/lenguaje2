@@ -223,6 +223,7 @@ class Conexion:
             except Error as ex:     
                            
                 print("Error en conexion: {0}".format(ex))
+                print("No se puede eliminar el alquiler, Eliminar C.P.PROPIEDAD.A")
                 
                 
     def actualizarAlquiler(self, cAAlquiler):        
@@ -323,7 +324,10 @@ class Conexion:
                     sql ="UPDATE inmobiliaria.cliente SET nombre = '{0}', apellido = '{1}', direccion = '{2}', telefono = '{3}', nombregarante = '{4}', alquiler_idalquiler = '{5}' WHERE (idcliente = '{6}');" 
                     mycursor.execute(sql.format(cACliente[0],cACliente[1], cACliente[2], cACliente[3], cACliente[4],cACliente[5],cACliente[6]))
                     self.inmobiliaria.commit()  
+                    os.system("cls")
                     print("Cliente Actualizado")
+                    time.sleep(2)
+                    
                     
                 except Error as ex:                    
                     print("Error en conexion: {0}".format(ex)) 

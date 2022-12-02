@@ -13,7 +13,7 @@ def listarpropietario(propietario):
     
 
     os.system("cls")
-    print(tabulate(propietario, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID DE ALGO"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
+    print(tabulate(propietario, headers=["ID","NOMBRE","APELLIO","DIRECCION","TELEFONO","EMAIL"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
 
 
 def pedirDatosPropietario():
@@ -29,6 +29,7 @@ def pedirDatosPropietario():
     {5} email varchar(45)  
     #Tabla
   '''
+  os.system("cls")
   nombre =  input("Nombre del Propietario ? ")
   apellido  =  input("Apellido del Propietario ? ")
   direccion =  input("Direccion del Propietario? ")
@@ -226,6 +227,7 @@ def pedirDatosAlquileres():
     {5} propiedad_idpropiedad int 
     #Tabla
   '''
+  os.system("cls")
   anContrato = int(input("Ingrese Año Inicial del contrato de alquiler: "))
   meContrato = int(input("Ingrese Mes Inicial del contrato de alquiler"))
   dContrato = int(input("Ingrese día Inicial del contrato de alquiler"))
@@ -327,9 +329,9 @@ def listarclientes(clientes):
     
     os.system("cls")
     print(tabulate(clientes, headers=["ID","NOMBRE","APELLIO","DIRECCION","MONTO","ASIGNADO","ID ALQUILER"],tablefmt='fancy_grid',stralign='center',floatfmt='.0f'))
-    respuesta = input("\n\nPresione Enter para volver al menu principal...")
-    if respuesta == "":
-        time.sleep(1)   
+    # respuesta = input("\n\nPresione Enter para volver al menu principal...")
+    # if respuesta == "":
+    #     time.sleep(1)   
 
     
     
@@ -386,6 +388,7 @@ def datosEliminarCliente(cliente):
 
 def datosActualizacionCliente(cliente):
   
+  os.system("cls")
   listarclientes(cliente)  
   eCodigoCliente = False
   

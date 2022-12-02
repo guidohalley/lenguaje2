@@ -48,13 +48,14 @@ def menuprincipal():
             print("10- Insertar ")            
             print("11- Eliminar ")
             print("12- Actualizar Alquiler")
+            print("13- Buscar un alquiler por Monto")
             
             print("---------Operaciones de Cliente--------")
-            print(" 13- Ver")
-            print(" 14- Insertar ")            
-            print(" 15- Eliminar ")
-            print(" 16- Actualizar Cliente")
-            print(" 17- Buscar por una letra un Cliente ")
+            print(" 14- Ver")
+            print(" 15- Insertar ")            
+            print(" 16- Eliminar ")
+            print(" 17- Actualizar Cliente")
+            print(" 18- Buscar por una letra un Cliente ")
             print(" ________________________________________")        
             print("|_______________ 0 - Salir_______________|")
             opcion = int(input("Seleccione una opcion : "))
@@ -268,7 +269,7 @@ def ejecutaropcion(opcion):
         except:
             print(" Menu 12 > Ocurrio un problema ")
             
-    elif opcion == 18:  #Buscar Alquiler por el monto
+    elif opcion == 13:  #Buscar Alquiler por el monto
         
         try:
             os.system("cls")          
@@ -277,10 +278,10 @@ def ejecutaropcion(opcion):
             if bAlquiler != []:
                 
                 print("Se encontro  a>  ", bAlquiler, "\n Volviendo al Menu Principal ")
-                respuesta = input("Presione Enter para volver al menu principal...")
-                if respuesta == "":
-                    time.sleep(3)
-                    os.system("cls")
+                # respuesta = input("Presione Enter para volver al menu principal...")
+                # if respuesta == "":
+                #     time.sleep(3)
+                #     os.system("cls")
             else:
                 print ("No se encontraron Registros")
                 
@@ -288,7 +289,7 @@ def ejecutaropcion(opcion):
             print(" Menu 13 > Ocurrio un problema ")
         
 #                     CLIENTE
-    elif opcion == 13:  #Mostrar Clientes
+    elif opcion == 14:  #Mostrar Clientes
         
         try:
             clientes = conexion.listarClientes()
@@ -304,7 +305,7 @@ def ejecutaropcion(opcion):
           print('An exception occurred')
           
                     
-    elif opcion == 14:  #Registrar Clientes
+    elif opcion == 15:  #Registrar Clientes
         
         clientes = funciones.pedirDatosClientes()
         try:
@@ -315,7 +316,7 @@ def ejecutaropcion(opcion):
             
           print('Ocurrio un Problema...')  
               
-    elif opcion == 15:  #Eliminar Clientes
+    elif opcion == 16:  #Eliminar Clientes
         
         try:
             
@@ -334,7 +335,7 @@ def ejecutaropcion(opcion):
             
           print('Ha ocurrido un problema')
           
-    elif opcion == 16:  #Actualizar Clientes
+    elif opcion == 17:  #Actualizar Clientes
         
         try:          
             
@@ -355,7 +356,7 @@ def ejecutaropcion(opcion):
             print(" Menu 16 > Ocurrio un problema ")
             
             
-    elif opcion == 17:  #Buscar Cliente x nombre
+    elif opcion == 18:  #Buscar Cliente x nombre
         
         try:
             os.system("cls")          
